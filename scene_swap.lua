@@ -1,4 +1,4 @@
-function love.load()
+function load_scene_swap()
     love.window.setMode(1920, 1080)
     love.window.setTitle("Jam Super Héros")
     player_sprite = love.graphics.newImage("Pictures/player.png")
@@ -31,7 +31,7 @@ function check_swap_scene()
     end
 end
 
-function love.update(dt)
+function update_scene_swap(dt)
     local dashDuration = 0.5
     local dashTime = 0
     if status_scene == false then
@@ -62,7 +62,7 @@ function love.update(dt)
     check_swap_scene()
 end
 
-function love.draw()
+function display_scene_swap()
     love.graphics.rectangle("fill", border_l.x, border_l.y, border_l.width, border_l.height)
     love.graphics.rectangle("fill", player.x - player.size/2, player.y - player.size/2, player.size, player.size)
     love.graphics.push()
