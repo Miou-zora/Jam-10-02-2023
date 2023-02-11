@@ -14,16 +14,16 @@ function Plateform.create(x, y, scale, path)
 end
 
 function Plateform.splitLine(line)
-	local values = {}
+    local values = {}
     local i = 1
-	for value in line:gmatch("[^ ]+") do
+    for value in line:gmatch("[^ ]+") do
         if i < 4 then
             value = tonumber(value)
         end
-		table.insert(values, value)
+        table.insert(values, value)
         i = i + 1
-	end
-	return values
+    end
+    return values
 end
 
 function Plateform.load(path)
