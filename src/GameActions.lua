@@ -1,16 +1,17 @@
 GameActions = {}
 
-GameState = {
-    Menu = "Menu",
-    Option = "Option",
-    Game = "Game",
-    Pause = "Pause",
-    End = "End"
-}
+function GameActions.load()
+    GameState = {
+        Menu = "Menu",
+        Option = "Option",
+        Game = "Game",
+        Pause = "Pause",
+        End = "End"
+    }
 
-ActualGameState = GameState["Menu"]
-
-LastGameState = GameState["Menu"]
+    ActualGameState = GameState["Menu"]
+    LastGameState = GameState["Menu"]
+end
 
 function GameActions.closeGame()
     love.event.quit()
