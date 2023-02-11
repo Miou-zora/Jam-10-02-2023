@@ -18,8 +18,11 @@ function createPlayer()
     return player
 end
 
-function createPlateform(x, y, w, h)
-    local asset = 0
-    local rectangle = {hitbox = createRectangle(x, y, w, h), asset = asset}
+function createPlateform(x, y, scale, path)
+    local asset = love.graphics.newImage(path)
+    local rectangle = {}
+    rectangle.hitbox = createRectangle(x, y, asset:getWidth() * (scale / 100), asset:getHeight() * (scale / 100))
+    rectangle.scale = scale
+    rectangle.asset = asset
     return rectangle
 end

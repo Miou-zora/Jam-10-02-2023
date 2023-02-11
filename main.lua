@@ -1,13 +1,18 @@
 require "src/Button"
+require "src/initiation"
+require "src/Plateform"
 
 function love.load()
     love.window.setMode(1920, 1080)
     love.window.setTitle("Jam Super Héros")
 
     Button.load()
+    path = "maps/map_test"
+    plateforms = loadPlateforms(path)
 end
 
 function love.draw()
+    drawPlateforms(plateforms)
     Button.draw()
 end
 
