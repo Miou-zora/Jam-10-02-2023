@@ -173,6 +173,7 @@ function Button.mousemoved(x, y, dx, dy)
 end
 
 function Button.keypressed(key)
+<<<<<<< Updated upstream
     -- if key == "escape" then
     --     if gaming then
     --         gaming = false
@@ -182,4 +183,13 @@ function Button.keypressed(key)
     --         closeAllButton()
     --     end
     -- end
+=======
+    if key == "escape" then
+        if ActualGameState == GameState["Game"] then
+            GameActions.setGameStatePause()
+        elseif ActualGameState == GameState["Pause"] then
+            GameActions.setGameStatePlay()
+        end
+    end
+>>>>>>> Stashed changes
 end
