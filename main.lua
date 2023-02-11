@@ -10,10 +10,10 @@ function love.load()
     love.window.setMode(1920, 1080)
     love.window.setTitle("Jam Super Héros")
 
-    MovePlayer.Load()
-    SceneSwap.LoadSceneSwap()
     GameActions.load()
     PlayerCustomization.load()
+    MovePlayer.Load()
+    SceneSwap.LoadSceneSwap()
     Button.load()
     path = "maps/map_test"
     plateforms = Plateform.load(path)
