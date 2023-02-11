@@ -27,6 +27,7 @@ end
 function love.draw()
     Button.draw()
     if ActualGameState == GameState["Game"] then
+        love.mouse.setVisible(false)
         Plateform.draw(plateforms)
         SceneSwap.DisplaySceneSwap()
     end
