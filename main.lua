@@ -15,8 +15,6 @@ function love.load()
     MovePlayer.Load()
     SceneSwap.LoadSceneSwap()
     Button.load()
-    path = "maps/map_test"
-    plateforms = Plateform.load(path)
 end
 
 function love.update(dt)
