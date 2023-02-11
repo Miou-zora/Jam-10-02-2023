@@ -1,4 +1,6 @@
 require "src/Button"
+require "src/Initiation"
+require "src/Plateform"
 require "src/GameActions"
 require "src/SceneSwap"
 
@@ -8,6 +10,8 @@ function love.load()
 
     SceneSwap.LoadSceneSwap()
     Button.load()
+    path = "maps/map_test"
+    plateforms = Plateform.load(path)
 end
 
 function love.update(dt)
@@ -19,6 +23,7 @@ function love.draw()
         Button.draw()
     end
     if ActualGameState == GameState["Game"] then
+        Plateform.draw(plateforms)
         SceneSwap.DisplaySceneSwap()
     end
 end
