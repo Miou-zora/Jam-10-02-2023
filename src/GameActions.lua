@@ -11,6 +11,15 @@ function GameActions.load()
 
     ActualGameState = GameState["Menu"]
     LastGameState = GameState["Menu"]
+
+    BackgroundImage = love.graphics.newImage("assets/background.png")
+
+    PossibleTitle = {
+        "Trans",
+        "Classic",
+        "ClassicBlack"
+    }
+    Title = love.graphics.newImage("assets/Title/" ..PossibleTitle[love.math.random(#PossibleTitle)].. ".png")
 end
 
 function GameActions.closeGame()
@@ -41,4 +50,14 @@ end
 function GameActions.setGameStateMenu()
     LastGameState = ActualGameState
     ActualGameState = GameState["Menu"]
+end
+
+function GameActions.drawBackground()
+    love.graphics.setColor(1, 1, 1)
+    love.graphics.draw(BackgroundImage, 0, 0, 0, 1.5, 1.5)
+end
+
+function GameActions.drawTitle()
+    love.graphics.setColor(1, 1, 1)
+    love.graphics.draw(Title, 100, -150, 0, 1.2, 1.2)
 end

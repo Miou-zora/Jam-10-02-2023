@@ -22,13 +22,20 @@ function love.update(dt)
 end
 
 function love.draw()
+<<<<<<< Updated upstream
     if ActualGameState == GameState["Menu"] then
         Button.draw()
     end
+=======
+    GameActions.drawBackground()
+    Button.draw()
+>>>>>>> Stashed changes
     if ActualGameState == GameState["Game"] then
         Plateform.draw(plateforms)
         SceneSwap.DisplaySceneSwap()
+        return
     end
+    GameActions.drawTitle()
     if ActualGameState == GameState["PlayerCustomization"] then
         PlayerCustomization.draw()
     end
@@ -40,10 +47,6 @@ end
 
 function love.mousereleased(x, y, button)
     Button.mousereleased(x, y, button)
-end
-
-function love.mousemoved(x, y, dx, dy)
-    Button.mousemoved(x, y, dx, dy)
 end
 
 function love.keypressed(key)
