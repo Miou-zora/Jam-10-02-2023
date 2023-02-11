@@ -1,48 +1,5 @@
 require = "Plateform"
-
-Player = {}
-
-function Player.Load()
-    player_sprite = love.graphics.newImage("Pictures/player.png")
-    player = {x = 500, y = 500, size = 50}
-    stick = {x = player.x, y = player.y - player.size, size = 50, angle = 0}
-end
-
-function Player.OrientationStick()
-    mouseX, mouseY = love.mouse.getPosition()
-    stick.angle = math.atan2(mouseY - player.y, mouseX - player.x)
-    stick.x = player.x + player.size * math.cos(stick.angle)
-    stick.y = player.y + player.size * math.sin(stick.angle)
-end
-
-function Player.Update(dt)
-    if love.keyboard.isDown("up") then
-        player.y = player.y - 200 * dt
-    end
-    if love.keyboard.isDown("down") then
-        player.y = player.y + 200 * dt
-    end
-    if love.keyboard.isDown("left") then
-        player.x = player.x - 200 * dt
-    end
-    if love.keyboard.isDown("right") then
-        player.x = player.x + 200 * dt
-    end
-    Player.OrientationStick()
-end
-
-function Player.Display()
-    love.graphics.setColor(1, 1, 1)
-    love.graphics.rectangle("fill", player.x - player.size/2, player.y - player.size/2, player.size, player.size)
-    if status_scene_swap == Slide_level["OK"] then
-        love.graphics.push()
-        love.graphics.translate(stick.x, stick.y)
-        love.graphics.rotate(stick.angle)
-        love.graphics.rectangle("fill", (-stick.size/4), (-stick.size/4), stick.size, stick.size/2)
-        love.graphics.pop()
-    end
-    love.graphics.draw(player_sprite, player.x - player.size / 2, player.y - player.size / 2)
-end
+require "src/MovePlayer"
 
 SceneSwap = {}
 
@@ -128,7 +85,7 @@ end
 
 function SceneSwap.UpdateSceneSwap(dt)
     if status_scene_swap == Slide_level["OK"] then
-        Player.Update(dt)
+        MovePlayer.Update(dt)
     else
         SceneSwap.top_level(dt)
         SceneSwap.down_level(dt)
@@ -137,6 +94,15 @@ function SceneSwap.UpdateSceneSwap(dt)
 end
 
 function SceneSwap.DisplaySceneSwap()
-    Player.Display()
-    Plateform.draw(PL)
+    local playerColor = love.graphics.newImage(PlayerColor)
+    local playerHat = love.graphics.newImage(PlayerHat)
+    local Arrow = love.graphics.newImage("assets/other/ARROW.png")
+    love.graphics.setColor(1, 1, 1)
+    love.graphics.push()
+    love.graphics.translate(stick.x, stick.y)
+    love.graphics.rotate(stick.angle)
+    love.graphics.draw(Arrow, -stick.size / 2, -stick.size / 2, 0, 0.4)
+    love.graphics.pop()
+    love.graphics.draw(playerColor, player.x - player.size / 2, player.y - player.size / 2, 0, 0.4)
+    love.graphics.draw(playerHat, player.x - player.size / 2, player.y - player.size / 2, 0, 0.4)
 end

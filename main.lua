@@ -1,34 +1,40 @@
 require "src/Button"
 require "src/Initiation"
 require "src/Plateform"
-require "src/GameActions"
 require "src/SceneSwap"
+require "src/MovePlayer"
+require "src/PlayerCustomization"
+require "src/GameActions"
 
 function love.load()
     love.window.setMode(1920, 1080)
     love.window.setTitle("Jam Super Héros")
 
+    GameActions.load()
+    PlayerCustomization.load()
+    MovePlayer.Load()
     SceneSwap.LoadSceneSwap()
     Button.load()
 end
 
 function love.update(dt)
-    if ActualGameState == GameState["Game"] then
-        SceneSwap.UpdateSceneSwap(dt)
-    end
+    SceneSwap.UpdateSceneSwap(dt)
+    MovePlayer.Update(dt)
 end
 
 function love.draw()
-    if ActualGameState == GameState["Menu"] then
-        Button.draw()
-    end
+    Button.draw()
     if ActualGameState == GameState["Game"] then
         SceneSwap.DisplaySceneSwap()
+    end
+    if ActualGameState == GameState["PlayerCustomization"] then
+        PlayerCustomization.draw()
     end
 end
 
 function love.mousepressed(x, y, btn, istouch)
     Button.mousepressed(x, y, btn, istouch)
+    MovePlayer.SetDirection(x, y, btn)
 end
 
 function love.mousereleased(x, y, button)
