@@ -1,11 +1,9 @@
 function load_scene_swap()
-    love.window.setMode(1920, 1080)
-    love.window.setTitle("Jam Super Héros")
     player_sprite = love.graphics.newImage("Pictures/player.png")
     player = {x = 500, y = 500, size = 50}
     stick = {x = player.x, y = player.y - player.size, size = 50, angle = 0}
-    local state = not love.mouse.isVisible()   -- the opposite of whatever it currently is
-    love.mouse.setVisible(state)
+    -- local state = not love.mouse.isVisible()   -- the opposite of whatever it currently is
+    -- love.mouse.setVisible(state)
     border_l = {x = 0, y = 0, width = 100, height = 1080}
     status_scene = false
     dash = false
@@ -63,6 +61,7 @@ function update_scene_swap(dt)
 end
 
 function display_scene_swap()
+    love.graphics.setColor(1, 1, 1)
     love.graphics.rectangle("fill", border_l.x, border_l.y, border_l.width, border_l.height)
     love.graphics.rectangle("fill", player.x - player.size/2, player.y - player.size/2, player.size, player.size)
     love.graphics.push()
