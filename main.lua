@@ -1,14 +1,17 @@
 require "src/Button"
 require "src/Initiation"
 require "src/Plateform"
-require "src/GameActions"
 require "src/SceneSwap"
+require "src/PlayerCustomization"
+require "src/GameActions"
 
 function love.load()
     love.window.setMode(1920, 1080)
     love.window.setTitle("Jam Super Héros")
 
     SceneSwap.LoadSceneSwap()
+    GameActions.load()
+    PlayerCustomization.load()
     Button.load()
     path = "maps/map_test"
     plateforms = Plateform.load(path)
@@ -25,6 +28,9 @@ function love.draw()
     if ActualGameState == GameState["Game"] then
         Plateform.draw(plateforms)
         SceneSwap.DisplaySceneSwap()
+    end
+    if ActualGameState == GameState["PlayerCustomization"] then
+        PlayerCustomization.draw()
     end
 end
 
