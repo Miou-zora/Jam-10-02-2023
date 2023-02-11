@@ -22,9 +22,7 @@ function love.update(dt)
 end
 
 function love.draw()
-    if ActualGameState == GameState["Menu"] then
-        Button.draw()
-    end
+    Button.draw()
     if ActualGameState == GameState["Game"] then
         Plateform.draw(plateforms)
         SceneSwap.DisplaySceneSwap()

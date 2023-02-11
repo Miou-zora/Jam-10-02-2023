@@ -162,4 +162,11 @@ function Button.mousemoved(x, y, dx, dy)
 end
 
 function Button.keypressed(key)
+    if key == "escape" then
+        if ActualGameState == GameState["Game"] then
+            GameActions.setGameStatePause()
+        elseif ActualGameState == GameState["Pause"] then
+            GameActions.setGameStatePlay()
+        end
+    end
 end
