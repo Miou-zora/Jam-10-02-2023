@@ -10,6 +10,7 @@ function love.load()
     love.window.setMode(1920, 1080)
     love.window.setTitle("Jam Super Héros")
 
+    SceneSwap.LoadSceneSwap()
     GameActions.load()
     PlayerCustomization.load()
     MovePlayer.Load()
@@ -25,11 +26,18 @@ function love.update(dt)
 end
 
 function love.draw()
+
+    GameActions.drawBackground()
     Button.draw()
     if ActualGameState == GameState["Game"] then
         love.mouse.setVisible(false)
         Plateform.draw(plateforms)
         SceneSwap.DisplaySceneSwap()
+        return
+    end
+    GameActions.drawTitle()
+    if ActualGameState == GameState["PlayerCustomization"] then
+        PlayerCustomization.draw()
     end
     if ActualGameState == GameState["PlayerCustomization"] then
         PlayerCustomization.draw()
@@ -43,10 +51,6 @@ end
 
 function love.mousereleased(x, y, button)
     Button.mousereleased(x, y, button)
-end
-
-function love.mousemoved(x, y, dx, dy)
-    Button.mousemoved(x, y, dx, dy)
 end
 
 function love.keypressed(key)

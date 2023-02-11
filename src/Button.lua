@@ -95,24 +95,24 @@ function Button.load()
 
     AllButtons = {}
     -- Main Menu
-    AllButtons[1] = createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 2}, {x = WW / 5, y = WH / 15}, "Play", GameActions.setGameStatePlay, GameState["Menu"])
-    AllButtons[2] = createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 3}, {x = WW / 5, y = WH / 15}, "Player Custom", PlayerCustomization.setGameStatePlayerCustomization, GameState["Menu"])
-    AllButtons[3] = createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 4}, {x = WW / 5, y = WH / 15}, "Options", GameActions.setGameStateOption, GameState["Menu"])
-    AllButtons[4] = createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 5}, {x = WW / 5, y = WH / 15}, "Quit", GameActions.closeGame, GameState["Menu"])
+    AllButtons[1] = createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 3}, {x = WW / 5, y = WH / 15}, "Play", GameActions.setGameStatePlay, GameState["Menu"])
+    AllButtons[2] = createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 4}, {x = WW / 5, y = WH / 15}, "Player Custom", PlayerCustomization.setGameStatePlayerCustomization, GameState["Menu"])
+    AllButtons[3] = createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 5}, {x = WW / 5, y = WH / 15}, "Options", GameActions.setGameStateOption, GameState["Menu"])
+    AllButtons[4] = createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 6}, {x = WW / 5, y = WH / 15}, "Quit", GameActions.closeGame, GameState["Menu"])
 
     -- Option
-    AllButtons[5] = createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 4}, {x = WW / 5, y = WH / 15}, "Back", GameActions.setGameStateBack, GameState["Option"])
+    AllButtons[5] = createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 5}, {x = WW / 5, y = WH / 15}, "Back", GameActions.setGameStateBack, GameState["Option"])
 
     -- Pause
-    AllButtons[6] = createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 3}, {x = WW / 5, y = WH / 15}, "Resume", GameActions.setGameStatePlay, GameState["Pause"])
-    AllButtons[7] = createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 4}, {x = WW / 5, y = WH / 15}, "Options", GameActions.setGameStateOption, GameState["Pause"])
-    AllButtons[8] = createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 5}, {x = WW / 5, y = WH / 15}, "Main Menu", GameActions.setGameStateMenu, GameState["Pause"])
+    AllButtons[6] = createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 4}, {x = WW / 5, y = WH / 15}, "Resume", GameActions.setGameStatePlay, GameState["Pause"])
+    AllButtons[7] = createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 5}, {x = WW / 5, y = WH / 15}, "Options", GameActions.setGameStateOption, GameState["Pause"])
+    AllButtons[8] = createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 6}, {x = WW / 5, y = WH / 15}, "Main Menu", GameActions.setGameStateMenu, GameState["Pause"])
 
     -- Player Custom
-    AllButtons[9] = createArrowButton({x = WW / 2 - WW / 6, y = WH / 8 * 2}, {x = WW / 40, y = WW / 40}, PlayerCustomization.incPlayerHat, GameState["PlayerCustomization"], "left")
-    AllButtons[10] = createArrowButton({x = WW / 2 + WW / 6, y = WH / 8 * 2}, {x = WW / 40, y = WW / 40}, PlayerCustomization.decrPlayerHat, GameState["PlayerCustomization"], "right")
-    AllButtons[11] = createArrowButton({x = WW / 2 - WW / 6, y = WH / 8 * 3}, {x = WW / 40, y = WW / 40}, PlayerCustomization.incPlayerColor, GameState["PlayerCustomization"], "left")
-    AllButtons[12] = createArrowButton({x = WW / 2 + WW / 6, y = WH / 8 * 3}, {x = WW / 40, y = WW / 40}, PlayerCustomization.decrPlayerColor, GameState["PlayerCustomization"], "right")
+    AllButtons[9] = createArrowButton({x = WW / 2 - WW / 6, y = WH / 8 * 3}, {x = WW / 40, y = WW / 40}, PlayerCustomization.incPlayerHat, GameState["PlayerCustomization"], "left")
+    AllButtons[10] = createArrowButton({x = WW / 2 + WW / 6, y = WH / 8 * 3}, {x = WW / 40, y = WW / 40}, PlayerCustomization.decrPlayerHat, GameState["PlayerCustomization"], "right")
+    AllButtons[11] = createArrowButton({x = WW / 2 - WW / 6, y = WH / 8 * 4}, {x = WW / 40, y = WW / 40}, PlayerCustomization.incPlayerColor, GameState["PlayerCustomization"], "left")
+    AllButtons[12] = createArrowButton({x = WW / 2 + WW / 6, y = WH / 8 * 4}, {x = WW / 40, y = WW / 40}, PlayerCustomization.decrPlayerColor, GameState["PlayerCustomization"], "right")
     AllButtons[13] = createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 5}, {x = WW / 5, y = WH / 15}, "Back", GameActions.setGameStateBack, GameState["PlayerCustomization"])
 end
 
@@ -156,9 +156,6 @@ function Button.mousereleased(x, y, btn)
             end
         end
     end
-end
-
-function Button.mousemoved(x, y, dx, dy)
 end
 
 function Button.keypressed(key)
