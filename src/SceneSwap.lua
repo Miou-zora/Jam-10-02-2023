@@ -16,14 +16,14 @@ function SceneSwap.LoadSceneSwap()
     PL = Plateform.load(path)
 end
 
-function SceneSwap.slide_player_top()
+function SceneSwap.SlidePlayerTop()
     if (value_player ~= 0) then
         player.y = player.y + 10
         value_player = value_player - 10
     end
 end
 
-function SceneSwap.slide_top()
+function SceneSwap.SlideTop()
     if (value_top_down ~= 0) then
         for i = 1, #PL do
             plateforms[i].hitbox.y = plateforms[i].hitbox.y + 10
@@ -32,10 +32,10 @@ function SceneSwap.slide_top()
     end
 end
 
-function SceneSwap.top_level(dt)
+function SceneSwap.TopLevel(dt)
     if status_scene_swap == Slide_level["Up"] then
-        SceneSwap.slide_player_top()
-        SceneSwap.slide_top()
+        SceneSwap.SlidePlayerTop()
+        SceneSwap.SlideTop()
         if value_player == 0 and value_top_down == 0 then
             status_scene_swap = Slide_level["OK"]
             value_player = 1040
@@ -44,14 +44,14 @@ function SceneSwap.top_level(dt)
     end
 end
 
-function SceneSwap.slide_player_down()
+function SceneSwap.SlidePlayerDown()
     if (value_player ~= 0) then
         player.y = player.y - 10
         value_player = value_player - 10
     end
 end
 
-function SceneSwap.slide_down()
+function SceneSwap.SlideDown()
     if (value_top_down ~= 0) then
         for i = 1, #PL do
             plateforms[i].hitbox.y = plateforms[i].hitbox.y - 10
@@ -60,10 +60,10 @@ function SceneSwap.slide_down()
     end
 end
 
-function SceneSwap.down_level(dt)
+function SceneSwap.DownLevel(dt)
     if status_scene_swap == Slide_level["Down"] then
-        SceneSwap.slide_player_down()
-        SceneSwap.slide_down()
+        SceneSwap.SlidePlayerDown()
+        SceneSwap.SlideDown()
         if value_player == 0 and value_top_down == 0 then
             status_scene_swap = Slide_level["OK"]
             value_player = 1040
@@ -85,8 +85,8 @@ function SceneSwap.UpdateSceneSwap(dt)
     if status_scene_swap == Slide_level["OK"] then
         MovePlayer.Update(dt)
     else
-        SceneSwap.top_level(dt)
-        SceneSwap.down_level(dt)
+        SceneSwap.TopLevel(dt)
+        SceneSwap.DownLevel(dt)
     end
     SceneSwap.CheckSwapScene()
 end
