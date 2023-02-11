@@ -23,7 +23,7 @@ end
 
 function GameActions.setGameStatePlay()
     LastGameState = ActualGameState
-    ActualGameState = GameState["Play"]
+    ActualGameState = GameState["Game"]
 end
 
 function GameActions.setGameStateBack()
