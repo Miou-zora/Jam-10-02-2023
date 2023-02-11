@@ -13,8 +13,10 @@ function love.load()
     GameActions.load()
     PlayerCustomization.load()
     MovePlayer.Load()
-    SceneSwap.LoadSceneSwap()
     Button.load()
+    path = "maps/map_simple"
+    plateforms = Plateform.load(path)
+    SceneSwap.LoadSceneSwap(plateforms)
 end
 
 function love.update(dt)

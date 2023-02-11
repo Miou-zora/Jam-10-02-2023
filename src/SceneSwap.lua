@@ -1,4 +1,3 @@
-require = "Plateform"
 require "src/MovePlayer"
 
 SceneSwap = {}
@@ -10,22 +9,21 @@ Slide_level = {
 }
 
 function SceneSwap.LoadSceneSwap()
-    Player.Load()
     status_scene_swap = Slide_level["OK"]
-    path = "maps/map_test"
-    PL = Plateform.load(path)
     value_top_down = 1080
     value_player = 1040
+    path = "maps/map_simple"
+    PL = Plateform.load(path)
 end
 
-function SceneSwap.slide_player_top()
+function SceneSwap.SlidePlayerTop()
     if (value_player ~= 0) then
         player.y = player.y + 10
         value_player = value_player - 10
     end
 end
 
-function SceneSwap.slide_top(plateforms)
+function SceneSwap.SlideTop()
     if (value_top_down ~= 0) then
         for i = 1, #PL do
             plateforms[i].hitbox.y = plateforms[i].hitbox.y + 10
@@ -34,10 +32,10 @@ function SceneSwap.slide_top(plateforms)
     end
 end
 
-function SceneSwap.top_level(dt)
+function SceneSwap.TopLevel(dt)
     if status_scene_swap == Slide_level["Up"] then
-        SceneSwap.slide_player_top()
-        SceneSwap.slide_top(PL)
+        SceneSwap.SlidePlayerTop()
+        SceneSwap.SlideTop()
         if value_player == 0 and value_top_down == 0 then
             status_scene_swap = Slide_level["OK"]
             value_player = 1040
@@ -46,14 +44,14 @@ function SceneSwap.top_level(dt)
     end
 end
 
-function SceneSwap.slide_player_down()
+function SceneSwap.SlidePlayerDown()
     if (value_player ~= 0) then
         player.y = player.y - 10
         value_player = value_player - 10
     end
 end
 
-function SceneSwap.slide_down(plateforms)
+function SceneSwap.SlideDown()
     if (value_top_down ~= 0) then
         for i = 1, #PL do
             plateforms[i].hitbox.y = plateforms[i].hitbox.y - 10
@@ -62,10 +60,10 @@ function SceneSwap.slide_down(plateforms)
     end
 end
 
-function SceneSwap.down_level(dt)
+function SceneSwap.DownLevel(dt)
     if status_scene_swap == Slide_level["Down"] then
-        SceneSwap.slide_player_down()
-        SceneSwap.slide_down(PL)
+        SceneSwap.SlidePlayerDown()
+        SceneSwap.SlideDown()
         if value_player == 0 and value_top_down == 0 then
             status_scene_swap = Slide_level["OK"]
             value_player = 1040
@@ -74,7 +72,7 @@ function SceneSwap.down_level(dt)
     end
 end
 
-function SceneSwap.check_swap_level()
+function SceneSwap.CheckSwapScene()
     if player.y < 0 then
         status_scene_swap = Slide_level["Up"]
     end
@@ -87,10 +85,10 @@ function SceneSwap.UpdateSceneSwap(dt)
     if status_scene_swap == Slide_level["OK"] then
         MovePlayer.Update(dt)
     else
-        SceneSwap.top_level(dt)
-        SceneSwap.down_level(dt)
+        SceneSwap.TopLevel(dt)
+        SceneSwap.DownLevel(dt)
     end
-    SceneSwap.check_swap_level()
+    SceneSwap.CheckSwapScene()
 end
 
 function SceneSwap.DisplaySceneSwap()
