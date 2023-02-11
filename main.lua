@@ -1,14 +1,26 @@
 require "src/Button"
+require "src/GameActions"
+require "src/SceneSwap"
 
 function love.load()
     love.window.setMode(1920, 1080)
     love.window.setTitle("Jam Super Héros")
 
+    SceneSwap.LoadSceneSwap()
     Button.load()
 end
 
+function love.update(dt)
+    SceneSwap.UpdateSceneSwap(dt)
+end
+
 function love.draw()
-    Button.draw()
+    if ActualGameState == GameState["Menu"] then
+        Button.draw()
+    end
+    if ActualGameState == GameState["Game"] then
+        SceneSwap.DisplaySceneSwap()
+    end
 end
 
 function love.mousepressed(x, y, btn, istouch)
