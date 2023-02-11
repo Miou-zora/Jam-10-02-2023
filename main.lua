@@ -10,12 +10,12 @@ function love.load()
 
     SceneSwap.LoadSceneSwap()
     Button.load()
-    path = "maps/map_test"
-    plateforms = Plateform.load(path)
 end
 
 function love.update(dt)
-    SceneSwap.UpdateSceneSwap(dt)
+    if ActualGameState == GameState["Game"] then
+        SceneSwap.UpdateSceneSwap(dt)
+    end
 end
 
 function love.draw()
@@ -23,7 +23,6 @@ function love.draw()
         Button.draw()
     end
     if ActualGameState == GameState["Game"] then
-        Plateform.draw(plateforms)
         SceneSwap.DisplaySceneSwap()
     end
 end
