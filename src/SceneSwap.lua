@@ -47,8 +47,6 @@ end
 SceneSwap = {}
 
 Slide_level = {
-    Left = "Left",
-    Right = "Right",
     Up = "Up",
     Down = "Down",
     OK = "OK"
@@ -70,10 +68,10 @@ function SceneSwap.slide_player_top()
     end
 end
 
-function SceneSwap.slide_top()
+function SceneSwap.slide_top(plateforms)
     if (value_top_down ~= 0) then
         for i = 1, #PL do
-            PL[i].hitbox.y = PL[i].hitbox.y + 10
+            plateforms[i].hitbox.y = plateforms[i].hitbox.y + 10
         end
         value_top_down = value_top_down - 10
     end
@@ -82,7 +80,7 @@ end
 function SceneSwap.top_level(dt)
     if status_scene_swap == Slide_level["Up"] then
         SceneSwap.slide_player_top()
-        SceneSwap.slide_top()
+        SceneSwap.slide_top(PL)
         if value_player == 0 and value_top_down == 0 then
             status_scene_swap = Slide_level["OK"]
             value_player = 1040
@@ -98,10 +96,10 @@ function SceneSwap.slide_player_down()
     end
 end
 
-function SceneSwap.slide_down()
+function SceneSwap.slide_down(plateforms)
     if (value_top_down ~= 0) then
         for i = 1, #PL do
-            PL[i].hitbox.y = PL[i].hitbox.y - 10
+            plateforms[i].hitbox.y = plateforms[i].hitbox.y - 10
         end
         value_top_down = value_top_down - 10
     end
@@ -110,7 +108,7 @@ end
 function SceneSwap.down_level(dt)
     if status_scene_swap == Slide_level["Down"] then
         SceneSwap.slide_player_down()
-        SceneSwap.slide_down()
+        SceneSwap.slide_down(PL)
         if value_player == 0 and value_top_down == 0 then
             status_scene_swap = Slide_level["OK"]
             value_player = 1040
@@ -119,22 +117,6 @@ function SceneSwap.down_level(dt)
     end
 end
 
--- function SceneSwap.left_level(dt)
---     if status_scene_swap == Slide_level["Left"] then
---         player.x = player.x + 800 * dt
---         if player.x + player.size > 1890 then
---             player.x = 1890 - player.size
---             status_scene_swap = Slide_level["OK"]
---         end
---     end
--- end
-
--- function SceneSwap.right_level(dt)
---     if status_scene_swap == Slide_level["Right"] then
---         player.x = player.x - 800 * dt
---     end
--- end
-
 function SceneSwap.check_swap_level()
     if player.y < 0 then
         status_scene_swap = Slide_level["Up"]
@@ -142,12 +124,6 @@ function SceneSwap.check_swap_level()
     if player.y > 1080 then
         status_scene_swap = Slide_level["Down"]
     end
-    -- if player.x < 0 then
-    --     status_scene_swap = Slide_level["Left"]
-    -- end
-    -- if player.x + player.size > 1920 then
-    --     status_scene_swap = Slide_level["Right"]
-    -- end
 end
 
 function SceneSwap.UpdateSceneSwap(dt)
@@ -156,8 +132,6 @@ function SceneSwap.UpdateSceneSwap(dt)
     else
         SceneSwap.top_level(dt)
         SceneSwap.down_level(dt)
-        -- SceneSwap.left_level(dt)
-        -- SceneSwap.right_level(dt)
     end
     SceneSwap.check_swap_level()
 end
