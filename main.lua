@@ -1,5 +1,5 @@
 require "src/Button"
-require "src/initiation"
+require "src/Initiation"
 require "src/Plateform"
 
 function love.load()
@@ -8,11 +8,11 @@ function love.load()
 
     Button.load()
     path = "maps/map_test"
-    plateforms = loadPlateforms(path)
+    plateforms = Plateform.load(path)
 end
 
 function love.draw()
-    drawPlateforms(plateforms)
+    Plateform.draw(plateforms)
     Button.draw()
 end
 
