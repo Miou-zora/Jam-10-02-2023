@@ -1,8 +1,10 @@
+require "src/IsTouch"
+
 MovePlayer = {}
 
 function MovePlayer.Load()
     player_sprite = love.graphics.newImage("Pictures/player.png")
-    player = {x = 500, y = 500, size = 50}
+    player = {x = 300, y = 300, size = 50}
     stick = {x = player.x, y = player.y - player.size, size = 50, angle = 0}
     speed = 100
     leftClickActive = false
@@ -24,7 +26,7 @@ function MovePlayer.Move(dt)
     if leftClickActive == true then
         player.x = player.x + speed * player.v.x * dt
         player.y = player.y + speed * player.v.y * dt
-        if player.x < 0 or player.x > love.graphics.getWidth() or player.y < 0 or player.y > love.graphics.getHeight() then
+        if IsTouch() == true then
             player.x = player.x - speed * player.v.x * dt
             player.y = player.y - speed * player.v.y * dt
             leftClickActive = false
