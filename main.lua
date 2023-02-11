@@ -9,6 +9,7 @@ function love.load()
     love.window.setMode(1920, 1080)
     love.window.setTitle("Jam Super Héros")
 
+    MovePlayer.Load()
     SceneSwap.LoadSceneSwap()
     Button.load()
     path = "maps/map_test"
@@ -17,6 +18,7 @@ end
 
 function love.update(dt)
     SceneSwap.UpdateSceneSwap(dt)
+    MovePlayer.Update(dt)
 end
 
 function love.draw()
@@ -31,7 +33,7 @@ end
 
 function love.mousepressed(x, y, btn, istouch)
     Button.mousepressed(x, y, btn, istouch)
-    MovePlayer.Move(x, y, btn)
+    MovePlayer.SetDirection(x, y, btn)
 end
 
 function love.mousereleased(x, y, button)
