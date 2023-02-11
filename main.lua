@@ -3,6 +3,7 @@ require "src/Initiation"
 require "src/Plateform"
 require "src/GameActions"
 require "src/SceneSwap"
+require "src/MovePlayer"
 
 function love.load()
     love.window.setMode(1920, 1080)
@@ -30,6 +31,7 @@ end
 
 function love.mousepressed(x, y, btn, istouch)
     Button.mousepressed(x, y, btn, istouch)
+    MovePlayer.Move(x, y, btn)
 end
 
 function love.mousereleased(x, y, button)
