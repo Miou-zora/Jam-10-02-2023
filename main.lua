@@ -1,19 +1,17 @@
 require "src/Button"
 require "src/GameActions"
-require "src/scene_swap"
+require "src/SceneSwap"
 
 function love.load()
     love.window.setMode(1920, 1080)
     love.window.setTitle("Jam Super Héros")
 
-    load_scene_swap()
+    SceneSwap.LoadSceneSwap()
     Button.load()
 end
 
 function love.update(dt)
-    if ActualGameState == GameState["Game"] then
-        update_scene_swap(dt)
-    end
+    SceneSwap.UpdateSceneSwap(dt)
 end
 
 function love.draw()
@@ -21,7 +19,7 @@ function love.draw()
         Button.draw()
     end
     if ActualGameState == GameState["Game"] then
-        display_scene_swap()
+        SceneSwap.DisplaySceneSwap()
     end
 end
 

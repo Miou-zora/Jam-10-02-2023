@@ -1,4 +1,6 @@
-function load_scene_swap()
+SceneSwap = {}
+
+function SceneSwap.LoadSceneSwap()
     player_sprite = love.graphics.newImage("Pictures/player.png")
     player = {x = 500, y = 500, size = 50}
     stick = {x = player.x, y = player.y - player.size, size = 50, angle = 0}
@@ -9,14 +11,14 @@ function load_scene_swap()
     dash = false
 end
 
-function orientation_stick()
+function SceneSwap.OrientationStick()
     mouseX, mouseY = love.mouse.getPosition()
     stick.angle = math.atan2(mouseY - player.y, mouseX - player.x)
     stick.x = player.x + player.size * math.cos(stick.angle)
     stick.y = player.y + player.size * math.sin(stick.angle)
 end
 
-function check_swap_scene()
+function SceneSwap.CheckSwapScene()
     if status_scene == true then
         player.y = player.y + 10
         if player.y >= (1080 - player.size) then
@@ -29,7 +31,7 @@ function check_swap_scene()
     end
 end
 
-function update_scene_swap(dt)
+function SceneSwap.UpdateSceneSwap(dt)
     local dashDuration = 0.5
     local dashTime = 0
     if status_scene == false then
@@ -55,12 +57,12 @@ function update_scene_swap(dt)
             dashTime = 0
         end
     else
-        orientation_stick()
+        SceneSwap.OrientationStick()
     end
-    check_swap_scene()
+    SceneSwap.CheckSwapScene()
 end
 
-function display_scene_swap()
+function SceneSwap.DisplaySceneSwap()
     love.graphics.setColor(1, 1, 1)
     love.graphics.rectangle("fill", border_l.x, border_l.y, border_l.width, border_l.height)
     love.graphics.rectangle("fill", player.x - player.size/2, player.y - player.size/2, player.size, player.size)
