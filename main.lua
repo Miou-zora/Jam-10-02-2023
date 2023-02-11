@@ -15,8 +15,6 @@ function love.load()
     MovePlayer.Load()
     SceneSwap.LoadSceneSwap()
     Button.load()
-    path = "maps/map_test"
-    plateforms = Plateform.load(path)
 end
 
 function love.update(dt)
@@ -27,7 +25,6 @@ end
 function love.draw()
     Button.draw()
     if ActualGameState == GameState["Game"] then
-        Plateform.draw(plateforms)
         SceneSwap.DisplaySceneSwap()
     end
     if ActualGameState == GameState["PlayerCustomization"] then
