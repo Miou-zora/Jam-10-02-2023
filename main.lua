@@ -6,7 +6,8 @@ function love.load()
     stick = {x = player.x, y = player.y - player.size, size = 50, angle = 0}
     local state = not love.mouse.isVisible()   -- the opposite of whatever it currently is
     love.mouse.setVisible(state)
-
+    border_l = {x = 0, y = 0, width = 100, height = 1080}
+    status_scene = false
 end
 
 function orientation_stick()
@@ -16,23 +17,40 @@ function orientation_stick()
     stick.y = player.y + player.size * math.sin(stick.angle)
 end
 
+function check_swap_scene()
+    if status_scene == true then
+        player.y = player.y + 10
+        if player.y >= (1080 - player.size) then
+            status_scene = false
+        end
+    end
+
+    if player.y <= 100 then
+        status_scene = true
+    end
+end
+
 function love.update(dt)
-    if love.keyboard.isDown("up") then
-            player.y = player.y - 200 * dt
+    if status_scene == false then
+        if love.keyboard.isDown("up") then
+                player.y = player.y - 200 * dt
+        end
+        if love.keyboard.isDown("down") then
+            player.y = player.y + 200 * dt
+        end
+        if love.keyboard.isDown("left") then
+            player.x = player.x - 200 * dt
+        end
+        if love.keyboard.isDown("right") then
+            player.x = player.x + 200 * dt
+        end
     end
-    if love.keyboard.isDown("down") then
-        player.y = player.y + 200 * dt
-    end
-    if love.keyboard.isDown("left") then
-        player.x = player.x - 200 * dt
-    end
-    if love.keyboard.isDown("right") then
-        player.x = player.x + 200 * dt
-    end
+    check_swap_scene()
     orientation_stick()
 end
 
 function love.draw()
+    love.graphics.rectangle("fill", border_l.x, border_l.y, border_l.width, border_l.height)
     love.graphics.rectangle("fill", player.x - player.size/2, player.y - player.size/2, player.size, player.size)
     love.graphics.push()
     love.graphics.translate(stick.x, stick.y)
