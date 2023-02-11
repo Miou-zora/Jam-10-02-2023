@@ -1,75 +1,106 @@
+require "src/MovePlayer"
+
 SceneSwap = {}
 
+Slide_level = {
+    Up = "Up",
+    Down = "Down",
+    OK = "OK"
+}
+
 function SceneSwap.LoadSceneSwap()
-    player_sprite = love.graphics.newImage("Pictures/player.png")
-    player = {x = 500, y = 500, size = 50}
-    stick = {x = player.x, y = player.y - player.size, size = 50, angle = 0}
-    -- local state = not love.mouse.isVisible()   -- the opposite of whatever it currently is
-    -- love.mouse.setVisible(state)
-    border_l = {x = 0, y = 0, width = 100, height = 1080}
-    status_scene = false
-    dash = false
+    status_scene_swap = Slide_level["OK"]
+    value_top_down = 1080
+    value_player = 1040
+    path = "maps/map_simple"
+    PL = Plateform.load(path)
 end
 
-function SceneSwap.OrientationStick()
-    mouseX, mouseY = love.mouse.getPosition()
-    stick.angle = math.atan2(mouseY - player.y, mouseX - player.x)
-    stick.x = player.x + player.size * math.cos(stick.angle)
-    stick.y = player.y + player.size * math.sin(stick.angle)
+function SceneSwap.SlidePlayerTop()
+    if (value_player ~= 0) then
+        player.y = player.y + 10
+        value_player = value_player - 10
+    end
+end
+
+function SceneSwap.SlideTop()
+    if (value_top_down ~= 0) then
+        for i = 1, #PL do
+            plateforms[i].hitbox.y = plateforms[i].hitbox.y + 10
+        end
+        value_top_down = value_top_down - 10
+    end
+end
+
+function SceneSwap.TopLevel(dt)
+    if status_scene_swap == Slide_level["Up"] then
+        SceneSwap.SlidePlayerTop()
+        SceneSwap.SlideTop()
+        if value_player == 0 and value_top_down == 0 then
+            status_scene_swap = Slide_level["OK"]
+            value_player = 1040
+            value_top_down = 1080
+        end
+    end
+end
+
+function SceneSwap.SlidePlayerDown()
+    if (value_player ~= 0) then
+        player.y = player.y - 10
+        value_player = value_player - 10
+    end
+end
+
+function SceneSwap.SlideDown()
+    if (value_top_down ~= 0) then
+        for i = 1, #PL do
+            plateforms[i].hitbox.y = plateforms[i].hitbox.y - 10
+        end
+        value_top_down = value_top_down - 10
+    end
+end
+
+function SceneSwap.DownLevel(dt)
+    if status_scene_swap == Slide_level["Down"] then
+        SceneSwap.SlidePlayerDown()
+        SceneSwap.SlideDown()
+        if value_player == 0 and value_top_down == 0 then
+            status_scene_swap = Slide_level["OK"]
+            value_player = 1040
+            value_top_down = 1080
+        end
+    end
 end
 
 function SceneSwap.CheckSwapScene()
-    if status_scene == true then
-        player.y = player.y + 10
-        if player.y >= (1080 - player.size) then
-            status_scene = false
-        end
+    if player.y < 0 then
+        status_scene_swap = Slide_level["Up"]
     end
-
-    if player.y <= 100 then
-        status_scene = true
+    if player.y > 1080 then
+        status_scene_swap = Slide_level["Down"]
     end
 end
 
 function SceneSwap.UpdateSceneSwap(dt)
-    local dashDuration = 0.5
-    local dashTime = 0
-    if status_scene == false then
-            if love.keyboard.isDown("up") then
-                    player.y = player.y - 200 * dt
-            end
-            if love.keyboard.isDown("down") then
-                player.y = player.y + 200 * dt
-            end
-            if love.keyboard.isDown("left") then
-                player.x = player.x - 200 * dt
-            end
-            if love.keyboard.isDown("right") then
-                player.x = player.x + 200 * dt
-            end
-    end
-    if love.keyboard.isDown("x") then
-        dash = true
-        if dashTime < dashDuration then
-            player.x = mouseX + 3000 * dt
-            player.y = mouseY + 3000 * dt
-        else
-            dashTime = 0
-        end
+    if status_scene_swap == Slide_level["OK"] then
+        MovePlayer.Update(dt)
     else
-        SceneSwap.OrientationStick()
+        SceneSwap.TopLevel(dt)
+        SceneSwap.DownLevel(dt)
     end
     SceneSwap.CheckSwapScene()
 end
 
 function SceneSwap.DisplaySceneSwap()
+    local playerColor = love.graphics.newImage(PlayerColor)
+    local playerHat = love.graphics.newImage(PlayerHat)
+    local Arrow = love.graphics.newImage("assets/other/ARROW.png")
     love.graphics.setColor(1, 1, 1)
-    love.graphics.rectangle("fill", border_l.x, border_l.y, border_l.width, border_l.height)
-    love.graphics.rectangle("fill", player.x - player.size/2, player.y - player.size/2, player.size, player.size)
     love.graphics.push()
     love.graphics.translate(stick.x, stick.y)
     love.graphics.rotate(stick.angle)
-    love.graphics.rectangle("fill", (-stick.size/4), (-stick.size/4), stick.size, stick.size/2)
+    love.graphics.draw(Arrow, -stick.size / 2, -stick.size / 2, 0, 0.4)
     love.graphics.pop()
-    love.graphics.draw(player_sprite, player.x - player.size / 2, player.y - player.size / 2)
+    love.graphics.draw(playerColor, player.x - player.size / 2, player.y - player.size / 2, 0, 0.4)
+    love.graphics.draw(playerHat, player.x - player.size / 2, player.y - player.size / 2, 0, 0.4)
 end

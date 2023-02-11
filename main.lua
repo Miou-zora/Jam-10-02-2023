@@ -2,6 +2,7 @@ require "src/Button"
 require "src/Initiation"
 require "src/Plateform"
 require "src/SceneSwap"
+require "src/MovePlayer"
 require "src/PlayerCustomization"
 require "src/GameActions"
 
@@ -12,25 +13,24 @@ function love.load()
     SceneSwap.LoadSceneSwap()
     GameActions.load()
     PlayerCustomization.load()
+    MovePlayer.Load()
     Button.load()
-    path = "maps/map_test"
+    path = "maps/map_simple"
     plateforms = Plateform.load(path)
+    SceneSwap.LoadSceneSwap(plateforms)
 end
 
 function love.update(dt)
     SceneSwap.UpdateSceneSwap(dt)
+    MovePlayer.Update(dt)
 end
 
 function love.draw()
-<<<<<<< Updated upstream
-    if ActualGameState == GameState["Menu"] then
-        Button.draw()
-    end
-=======
+
     GameActions.drawBackground()
     Button.draw()
->>>>>>> Stashed changes
     if ActualGameState == GameState["Game"] then
+        love.mouse.setVisible(false)
         Plateform.draw(plateforms)
         SceneSwap.DisplaySceneSwap()
         return
@@ -39,10 +39,14 @@ function love.draw()
     if ActualGameState == GameState["PlayerCustomization"] then
         PlayerCustomization.draw()
     end
+    if ActualGameState == GameState["PlayerCustomization"] then
+        PlayerCustomization.draw()
+    end
 end
 
 function love.mousepressed(x, y, btn, istouch)
     Button.mousepressed(x, y, btn, istouch)
+    MovePlayer.SetDirection(x, y, btn)
 end
 
 function love.mousereleased(x, y, button)

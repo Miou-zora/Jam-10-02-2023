@@ -82,14 +82,6 @@ function DrawArrowButton(button)
     love.graphics.translate(button.pos.x, button.pos.y)
     love.graphics.polygon("fill", button.vertices)
     love.graphics.pop()
-
-    -- Debug (Hitbox)
-    -- love.graphics.push()
-    -- love.graphics.origin()
-    -- love.graphics.setColor(1, 1, 1)
-    -- love.graphics.translate(button.pos.x, button.pos.y)
-    -- love.graphics.rectangle("line", 0, 0, button.size.x, button.size.y)
-    -- love.graphics.pop()
 end
 
 function Button.load()
@@ -167,17 +159,6 @@ function Button.mousereleased(x, y, btn)
 end
 
 function Button.keypressed(key)
-<<<<<<< Updated upstream
-    -- if key == "escape" then
-    --     if gaming then
-    --         gaming = false
-    --         openAllButton()
-    --     else
-    --         gaming = true
-    --         closeAllButton()
-    --     end
-    -- end
-=======
     if key == "escape" then
         if ActualGameState == GameState["Game"] then
             GameActions.setGameStatePause()
@@ -185,5 +166,4 @@ function Button.keypressed(key)
             GameActions.setGameStatePlay()
         end
     end
->>>>>>> Stashed changes
 end
