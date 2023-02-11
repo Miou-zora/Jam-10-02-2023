@@ -1,10 +1,10 @@
 require "src/IsTouch"
+require "src/PlayerCustomization"
 
 MovePlayer = {}
 
 function MovePlayer.Load()
-    player_sprite = love.graphics.newImage("Pictures/player.png")
-    player = {x = 300, y = 300, size = 50}
+    player = {x = 300, y = 300, size = 80}
     stick = {x = player.x, y = player.y - player.size, size = 50, angle = 0}
     speed = 100
     leftClickActive = false
@@ -35,7 +35,6 @@ function MovePlayer.Move(dt)
 end
 
 function MovePlayer.SetDirection(x, y, btn)
-    local speed = 100
     local dt = love.timer.getDelta()
 
     if btn == 2 then

@@ -3,7 +3,6 @@ require "src/MovePlayer"
 SceneSwap = {}
 
 function SceneSwap.LoadSceneSwap()
-    border_l = {x = 0, y = 0, width = 100, height = 1080}
     status_scene = false
 end
 
@@ -26,13 +25,15 @@ function SceneSwap.UpdateSceneSwap(dt)
 end
 
 function SceneSwap.DisplaySceneSwap()
+    local playerColor = love.graphics.newImage(PlayerColor)
+    local playerHat = love.graphics.newImage(PlayerHat)
+    local Arrow = love.graphics.newImage("assets/other/ARROW.png")
     love.graphics.setColor(1, 1, 1)
-    love.graphics.rectangle("fill", border_l.x, border_l.y, border_l.width, border_l.height)
-    love.graphics.rectangle("fill", player.x - player.size/2, player.y - player.size/2, player.size, player.size)
     love.graphics.push()
     love.graphics.translate(stick.x, stick.y)
     love.graphics.rotate(stick.angle)
-    love.graphics.rectangle("fill", (-stick.size/4), (-stick.size/4), stick.size, stick.size/2)
+    love.graphics.draw(Arrow, -stick.size / 2, -stick.size / 2, 0, 0.4)
     love.graphics.pop()
-    love.graphics.draw(player_sprite, player.x - player.size / 2, player.y - player.size / 2)
+    love.graphics.draw(playerColor, player.x - player.size / 2, player.y - player.size / 2, 0, 0.4)
+    love.graphics.draw(playerHat, player.x - player.size / 2, player.y - player.size / 2, 0, 0.4)
 end
