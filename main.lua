@@ -2,6 +2,7 @@ require "src/Button"
 require "src/Initiation"
 require "src/Plateform"
 require "src/SceneSwap"
+require "src/MovePlayer"
 require "src/PlayerCustomization"
 require "src/GameActions"
 
@@ -9,6 +10,7 @@ function love.load()
     love.window.setMode(1920, 1080)
     love.window.setTitle("Jam Super Héros")
 
+    MovePlayer.Load()
     SceneSwap.LoadSceneSwap()
     GameActions.load()
     PlayerCustomization.load()
@@ -19,6 +21,7 @@ end
 
 function love.update(dt)
     SceneSwap.UpdateSceneSwap(dt)
+    MovePlayer.Update(dt)
 end
 
 function love.draw()
@@ -34,6 +37,7 @@ end
 
 function love.mousepressed(x, y, btn, istouch)
     Button.mousepressed(x, y, btn, istouch)
+    MovePlayer.SetDirection(x, y, btn)
 end
 
 function love.mousereleased(x, y, button)
