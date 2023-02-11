@@ -1,9 +1,10 @@
 require "src/Button"
 require "src/Initiation"
 require "src/Plateform"
-require "src/GameActions"
 require "src/SceneSwap"
 require "src/MovePlayer"
+require "src/PlayerCustomization"
+require "src/GameActions"
 
 function love.load()
     love.window.setMode(1920, 1080)
@@ -11,6 +12,8 @@ function love.load()
 
     MovePlayer.Load()
     SceneSwap.LoadSceneSwap()
+    GameActions.load()
+    PlayerCustomization.load()
     Button.load()
     path = "maps/map_test"
     plateforms = Plateform.load(path)
@@ -22,12 +25,13 @@ function love.update(dt)
 end
 
 function love.draw()
-    if ActualGameState == GameState["Menu"] then
-        Button.draw()
-    end
+    Button.draw()
     if ActualGameState == GameState["Game"] then
         Plateform.draw(plateforms)
         SceneSwap.DisplaySceneSwap()
+    end
+    if ActualGameState == GameState["PlayerCustomization"] then
+        PlayerCustomization.draw()
     end
 end
 
