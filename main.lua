@@ -8,6 +8,7 @@ function love.load()
     love.mouse.setVisible(state)
     border_l = {x = 0, y = 0, width = 100, height = 1080}
     status_scene = false
+    dash = false
 end
 
 function orientation_stick()
@@ -31,22 +32,34 @@ function check_swap_scene()
 end
 
 function love.update(dt)
+    local dashDuration = 0.5
+    local dashTime = 0
     if status_scene == false then
-        if love.keyboard.isDown("up") then
-                player.y = player.y - 200 * dt
+            if love.keyboard.isDown("up") then
+                    player.y = player.y - 200 * dt
+            end
+            if love.keyboard.isDown("down") then
+                player.y = player.y + 200 * dt
+            end
+            if love.keyboard.isDown("left") then
+                player.x = player.x - 200 * dt
+            end
+            if love.keyboard.isDown("right") then
+                player.x = player.x + 200 * dt
+            end
+    end
+    if love.keyboard.isDown("x") then
+        dash = true
+        if dashTime < dashDuration then
+            player.x = mouseX + 3000 * dt
+            player.y = mouseY + 3000 * dt
+        else
+            dashTime = 0
         end
-        if love.keyboard.isDown("down") then
-            player.y = player.y + 200 * dt
-        end
-        if love.keyboard.isDown("left") then
-            player.x = player.x - 200 * dt
-        end
-        if love.keyboard.isDown("right") then
-            player.x = player.x + 200 * dt
-        end
+    else
+        orientation_stick()
     end
     check_swap_scene()
-    orientation_stick()
 end
 
 function love.draw()
