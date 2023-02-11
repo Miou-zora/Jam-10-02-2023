@@ -23,9 +23,21 @@ end
 
 function GameActions.setGameStatePlay()
     LastGameState = ActualGameState
-    ActualGameState = GameState["Play"]
+    ActualGameState = GameState["Game"]
 end
 
 function GameActions.setGameStateBack()
+    temp = ActualGameState
     ActualGameState = LastGameState
+    LastGameState = temp
+end
+
+function GameActions.setGameStateOption()
+    LastGameState = ActualGameState
+    ActualGameState = GameState["Option"]
+end
+
+function GameActions.setGameStateMenu()
+    LastGameState = ActualGameState
+    ActualGameState = GameState["Menu"]
 end

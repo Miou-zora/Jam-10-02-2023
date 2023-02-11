@@ -2,9 +2,6 @@ require "src/GameActions"
 
 Button = {}
 
-local function doNothing()
-end
-
 local function createClassicButton(pos, size, stringText, action, requireState)
     local button = {}
     button.pos = {x = pos.x, y = pos.y}
@@ -70,11 +67,19 @@ function Button.load()
     ButtonType = {Classic = "Classic", Slider = "Slider"}
 
     AllButtons = {}
+    -- Pause
     AllButtons[1] = createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 2}, {x = WW / 5, y = WH / 15}, "Play", GameActions.setGameStatePlay, GameState["Menu"])
-    AllButtons[2] = createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 3}, {x = WW / 5, y = WH / 15}, "Player Custom", doNothing, GameState["Menu"])
-    AllButtons[3] = createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 4}, {x = WW / 5, y = WH / 15}, "Option", GameActions.setGameStatePause, GameState["Menu"])
+    AllButtons[2] = createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 3}, {x = WW / 5, y = WH / 15}, "Player Custom", GameActions.setGameStatePause, GameState["Menu"])
+    AllButtons[3] = createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 4}, {x = WW / 5, y = WH / 15}, "Options", GameActions.setGameStateOption, GameState["Menu"])
     AllButtons[4] = createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 5}, {x = WW / 5, y = WH / 15}, "Quit", GameActions.closeGame, GameState["Menu"])
-    AllButtons[5] = createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 4}, {x = WW / 5, y = WH / 15}, "Back", GameActions.setGameStateBack, GameState["Pause"])
+
+    -- Option
+    AllButtons[5] = createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 4}, {x = WW / 5, y = WH / 15}, "Back", GameActions.setGameStateBack, GameState["Option"])
+
+    -- Pause
+    AllButtons[6] = createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 3}, {x = WW / 5, y = WH / 15}, "Resume", GameActions.setGameStatePlay, GameState["Pause"])
+    AllButtons[7] = createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 4}, {x = WW / 5, y = WH / 15}, "Options", GameActions.setGameStateOption, GameState["Pause"])
+    AllButtons[8] = createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 5}, {x = WW / 5, y = WH / 15}, "Main Menu", GameActions.setGameStateMenu, GameState["Pause"])
 end
 
 function Button.draw()
@@ -110,7 +115,9 @@ function Button.mousereleased(x, y, btn)
             if btn == 1 then
                 if isCollide({x = x, y = y}, {x = AllButtons[i].pos.x, y = AllButtons[i].pos.y, dx = AllButtons[i].size.x, dy = AllButtons[i].size.y}) then
                     AllButtons[i].isPressed = false
-                    AllButtons[i].action()
+                    if AllButtons[i].action ~= nil then
+                        AllButtons[i].action()
+                    end
                 end
             end
         end
