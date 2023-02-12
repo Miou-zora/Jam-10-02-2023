@@ -34,6 +34,8 @@ function love.draw()
         Plateform.draw(plateforms)
         SceneSwap.DisplaySceneSwap()
         return
+    else
+        love.mouse.setVisible(true)
     end
     GameActions.drawTitle()
     if ActualGameState == GameState["PlayerCustomization"] then
