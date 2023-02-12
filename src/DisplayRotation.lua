@@ -12,6 +12,18 @@ function DisplayRotation.Player(playerColor)
     end
 end
 
+function DisplayRotation.Hat(playerHat)
+    if PlayerHat == PlayerCustomization.hats["Cap"] then
+        DisplayRotation.Cap(playerHat)
+    elseif PlayerHat == PlayerCustomization.hats["Horns"] then
+        DisplayRotation.Horns(playerHat)
+    elseif PlayerHat == PlayerCustomization.hats["Propel"] then
+        DisplayRotation.Propel(playerHat)
+    elseif PlayerHat == PlayerCustomization.hats["Top"] then
+        DisplayRotation.Top(playerHat)
+    end
+end
+
 function DisplayRotation.Cap(playerHat)
     local hatWidth = playerHat:getWidth()
     local hatHeight = playerHat:getHeight()
