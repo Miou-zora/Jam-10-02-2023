@@ -44,7 +44,9 @@ function love.draw()
         GameActions.drawTitle()
         love.mouse.setVisible(true)
         GameActions.drawTitle()
-        Credit.draw()
+        if ActualGameState == GameState["Menu"] then
+            Credit.draw()
+        end
         if ActualGameState == GameState["PlayerCustomization"] then
             PlayerCustomization.draw()
         end
