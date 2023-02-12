@@ -46,7 +46,6 @@ function Plateform.draw(plateforms)
         love.graphics.setColor(1, 1, 1)
         local scale = plateforms[i].scale / 100
         love.graphics.draw(plateforms[i].asset, plateforms[i].hitbox.x, plateforms[i].hitbox.y, 0, scale, scale)
-        love.graphics.rectangle("line", plateforms[i].hitbox.x, plateforms[i].hitbox.y, plateforms[i].hitbox.w, plateforms[i].hitbox.h)
         love.graphics.pop()
     end
 end
