@@ -3,6 +3,8 @@ require "src/PlayerCustomization"
 
 Button = {}
 
+borderColor = {0.75, 0.75, 1.0}
+
 local function createClassicButton(pos, size, stringText, action, requireState)
     local button = {}
     button.pos = {x = pos.x, y = pos.y}
@@ -32,9 +34,18 @@ end
 
 local function DrawClassicButton(button)
     love.graphics.push()
-    love.graphics.setColor(1, 1, 1)
     love.graphics.translate(button.pos.x, button.pos.y)
-    love.graphics.rectangle("fill", 0, 0, button.size.x, button.size.y)
+
+    local radius = 10
+
+    love.graphics.setColor(borderColor)
+    love.graphics.arc("fill", radius, radius, radius, math.pi, -math.pi, 20)
+    love.graphics.arc("fill", button.size.x-radius, radius, radius, -math.pi/2, 0, 20)
+    love.graphics.arc("fill", button.size.x-radius, button.size.y-radius, radius, 0, math.pi/2, 20)
+    love.graphics.arc("fill", radius, button.size.y-radius, radius, math.pi/2, math.pi, 20)
+
+    love.graphics.rectangle("fill", radius, 0, button.size.x-radius*2, button.size.y)
+    love.graphics.rectangle("fill", 0, radius, button.size.x, button.size.y-radius*2)
 
     love.graphics.setColor(0, 0, 0)
     love.graphics.draw(button.text, button.size.x / 2 - button.text:getWidth() / 2 , button.size.y / 2 - button.text:getHeight() / 2)
