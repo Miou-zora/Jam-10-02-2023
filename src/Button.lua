@@ -46,6 +46,8 @@ function Button.AddButton(button)
     Button.AllButtons[#Button.AllButtons + 1] = button
 end
 
+borderColor = {0.75, 0.75, 1.0}
+
 function createClassicButton(pos, size, stringText, action, requireState)
     local button = {}
     button.pos = {x = pos.x, y = pos.y}
@@ -73,7 +75,6 @@ function createSliderButton(pos, size, stringText, reference, update, requireSta
     return button
 end
 
-
 function createArrowButton(pos, size, action, requireState, rotation)
     local button = {}
     button.pos = {x = pos.x, y = pos.y}
@@ -95,6 +96,18 @@ function createArrowButton(pos, size, action, requireState, rotation)
     return button
 end
 
+
+Credit = {}
+
+function Credit.load()
+    font = love.graphics.newFont(50)
+    love.graphics.setFont(font)
+end
+
+function Credit.draw()
+    love.graphics.print("Alexandre Franquet                     Lylian Hay                         Matthias Gasté", 20, 890)
+    love.graphics.print("Aubane Nourry                          Alban Peralta                       Julien Renard", 20, 950)
+end
 
 function Button.load()
     local WW = love.graphics.getWidth()
@@ -119,6 +132,8 @@ function Button.load()
     Button.AddButton(createArrowButton({x = WW / 2 - WW / 6, y = WH / 8 * 4}, {x = WW / 40, y = WW / 40}, PlayerCustomization.incPlayerColor, GameState["PlayerCustomization"], "left"))
     Button.AddButton(createArrowButton({x = WW / 2 + WW / 6, y = WH / 8 * 4}, {x = WW / 40, y = WW / 40}, PlayerCustomization.decrPlayerColor, GameState["PlayerCustomization"], "right"))
     Button.AddButton(createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 5}, {x = WW / 5, y = WH / 15}, "Back", GameActions.setGameStateBack, GameState["PlayerCustomization"]))
+
+    Credit.load()
 end
 
 function Button.draw()

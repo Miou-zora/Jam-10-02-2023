@@ -8,6 +8,7 @@ require "src/GameActions"
 require "src/Bat"
 require "src/Particules"
 require "src/Sound"
+require "src/Cursor"
 
 function love.load()
     love.window.setMode(1920, 1080)
@@ -15,6 +16,7 @@ function love.load()
 
     Sound.load()
 
+    Cursor.load()
     SceneSwap.LoadSceneSwap()
     GameActions.load()
     PlayerCustomization.load()
@@ -47,6 +49,9 @@ function love.draw()
         GameActions.drawTitle()
         love.mouse.setVisible(true)
         GameActions.drawTitle()
+        if ActualGameState == GameState["Menu"] then
+            Credit.draw()
+        end
         if ActualGameState == GameState["PlayerCustomization"] then
             PlayerCustomization.draw()
         end
