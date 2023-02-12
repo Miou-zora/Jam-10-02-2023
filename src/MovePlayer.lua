@@ -6,7 +6,7 @@ MovePlayer = {}
 MovePlayer.speed = 400
 
 function MovePlayer.Load()
-    player = {x = 300, y = 300, size = 80}
+    player = {x = 1920 / 2, y = 1080 - 135, size = 80}
     stick = {x = player.x, y = player.y - player.size, size = 50, angle = 0}
     leftClickActive = false
 end
