@@ -3,10 +3,11 @@ require "src/PlayerCustomization"
 
 MovePlayer = {}
 
+MovePlayer.speed = 400
+
 function MovePlayer.Load()
     player = {x = 300, y = 300, size = 80}
     stick = {x = player.x, y = player.y - player.size, size = 50, angle = 0}
-    speed = 100
     leftClickActive = false
 end
 
@@ -24,11 +25,11 @@ end
 
 function MovePlayer.Move(dt)
     if leftClickActive == true then
-        player.x = player.x + speed * player.v.x * dt
-        player.y = player.y + speed * player.v.y * dt
+        player.x = player.x + MovePlayer.speed * player.v.x * dt
+        player.y = player.y + MovePlayer.speed * player.v.y * dt
         if IsTouch() == true then
-            player.x = player.x - speed * player.v.x * dt
-            player.y = player.y - speed * player.v.y * dt
+            player.x = player.x - MovePlayer.speed * player.v.x * dt
+            player.y = player.y - MovePlayer.speed * player.v.y * dt
             leftClickActive = false
         end
     end
