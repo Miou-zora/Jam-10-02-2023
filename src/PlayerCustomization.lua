@@ -81,6 +81,26 @@ function PlayerCustomization.decrPlayerHat()
     end
 end
 
+local function PrintBlueLore()
+    love.graphics.print("Jammy (Gout myrtille):\nAime la confiture", 500, 800)
+end
+
+local function PrintRedLore()
+    love.graphics.print("Alapalapala (Gout fruit du dragon):\nVie a Hawaï", 500, 800)
+end
+
+local function PrintBlackLore()
+    love.graphics.print("Mora (Gout mûre):\nAime l'argent", 500, 800)
+end
+
+local function PrintGreenLore()
+    love.graphics.print("Zelena (Gout kiwano):\nEst timide", 500, 800)
+end
+
+local function PrintGrayLore()
+    love.graphics.print("Mhlophe (Gout ramboutan):\nFan de Starwars", 500, 800)
+end
+
 function PlayerCustomization.draw()
     local posXMiddle = love.graphics.getWidth() / 2
     local posYMiddle = love.graphics.getHeight() / 2
@@ -90,6 +110,17 @@ function PlayerCustomization.draw()
     love.graphics.setColor(1, 1, 1)
 
     love.graphics.draw(playerColor, posXMiddle - playerColor:getWidth() / 5 * 2, posYMiddle - playerColor:getHeight())
+    if PlayerColor == PlayerCustomization.Color["Blue"] then
+        PrintBlueLore()
+    elseif PlayerColor == PlayerCustomization.Color["Black"] then
+        PrintBlackLore()
+    elseif PlayerColor == PlayerCustomization.Color["Gray"] then
+        PrintGrayLore()
+    elseif PlayerColor == PlayerCustomization.Color["Green"] then
+        PrintGreenLore()
+    elseif PlayerColor == PlayerCustomization.Color["Red"] then
+        PrintRedLore()
+    end
     if PlayerHat == PlayerCustomization.hats["Cap"] then
         love.graphics.draw(playerHat, posXMiddle - playerHat:getWidth() / 5 * 2, posYMiddle - playerColor:getHeight() - playerHat:getHeight(), 0, 1.5, 1.5)
     elseif PlayerHat == PlayerCustomization.hats["Horns"] then
