@@ -1,13 +1,15 @@
+Second = 0
+Minute = 0
 Timer = {}
 
-function Timer.update(dt)
+function Timer.Update(dt)
     if ActualGameState == GameState["Game"] then
-        SECOND = SECOND + dt
-        if SECOND >= 60 then
-            SECOND = 0
-            MINUTE = MINUTE + 1
+        Second = Second + dt
+        if Second >= 60 then
+            Second = 0
+            Minute = Minute + 1
         end
-        TIMER = string.format("%d:%02d", MINUTE, SECOND)
+        TIMER = string.format("%d:%02d", Minute, Second)
     end
     if ActualGameState == GameState["Menu"] then
         Timer.reset()
@@ -15,8 +17,8 @@ function Timer.update(dt)
 end
 
 function Timer.reset()
-    SECOND = 0
-    MINUTE = 0
+    Second = 0
+    Minute = 0
 end
 
 function Timer.draw()

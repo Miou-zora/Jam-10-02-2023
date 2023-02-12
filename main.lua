@@ -10,9 +10,6 @@ require "src/Particules"
 require "src/Cursor"
 require "src/Timer"
 
-SECOND = 0
-MINUTE = 0
-
 function love.load()
     love.window.setMode(1920, 1080)
     love.window.setTitle("Jam Super Héros")
@@ -34,7 +31,7 @@ function love.update(dt)
     MovePlayer.Update(dt)
     Bat.Update(dt)
     Particle.Update(dt)
-    Timer.update(dt)
+    Timer.Update(dt)
 end
 
 function love.draw()
