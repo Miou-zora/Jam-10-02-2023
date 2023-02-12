@@ -3,7 +3,7 @@ require "src/PlayerCustomization"
 
 MovePlayer = {}
 
-MovePlayer.speed = 200
+MovePlayer.speed = 400
 
 function MovePlayer.Load()
     player = {x = 1920 / 2, y = 1080 - 135, size = 80}
