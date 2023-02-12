@@ -1,14 +1,20 @@
 Plateform = {}
 
+plateformType = {
+    plateform = 0,
+    spike = 1
+}
+
 local function createRectangle(x, y, w, h)
     return {x = x, y = y, w = w, h = h}
 end
 
-function Plateform.create(x, y, scale, path)
+function Plateform.create(x, y, scale, type, path)
     local asset = love.graphics.newImage(path)
     local rectangle = {}
     rectangle.hitbox = createRectangle(x, y, asset:getWidth() * (scale / 100), asset:getHeight() * (scale / 100))
     rectangle.scale = scale
+    rectangle.type = type
     rectangle.asset = asset
     return rectangle
 end
@@ -17,7 +23,7 @@ function Plateform.splitLine(line)
     local values = {}
     local i = 1
     for value in line:gmatch("[^ ]+") do
-        if i < 4 then
+        if i < 5 then
             value = tonumber(value)
         end
         table.insert(values, value)
@@ -34,8 +40,9 @@ function Plateform.load(path)
         local x = values[1]
         local y = values[2]
         local scale = values[3]
-        local asset = values[4]
-        plateforms[#plateforms + 1] = Plateform.create(x, y, scale, asset)
+        local type = values[4]
+        local asset = values[5]
+        plateforms[#plateforms + 1] = Plateform.create(x, y, scale, type, asset)
     end
     return plateforms
 end
