@@ -5,6 +5,8 @@ require "src/SceneSwap"
 require "src/MovePlayer"
 require "src/PlayerCustomization"
 require "src/GameActions"
+require "src/Bat"
+require "src/Particules"
 
 function love.load()
     love.window.setMode(1920, 1080)
@@ -15,6 +17,7 @@ function love.load()
     PlayerCustomization.load()
     MovePlayer.Load()
     Button.load()
+    Bat.load()
     path = "maps/map_simple"
     plateforms = Plateform.load(path)
     SceneSwap.LoadSceneSwap(plateforms)
@@ -23,6 +26,8 @@ end
 function love.update(dt)
     SceneSwap.UpdateSceneSwap(dt)
     MovePlayer.Update(dt)
+    Bat.Update(dt)
+    Particle.Update(dt)
 end
 
 function love.draw()
@@ -33,6 +38,8 @@ function love.draw()
         love.mouse.setVisible(false)
         Plateform.draw(plateforms)
         SceneSwap.DisplaySceneSwap()
+        Particle.draw()
+        Bat.draw()
         return
     end
     GameActions.drawTitle()
