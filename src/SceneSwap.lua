@@ -1,5 +1,6 @@
 require "src/MovePlayer"
 require "src/PlayerCustomization"
+require "src/DisplayRotation"
 
 SceneSwap = {}
 
@@ -96,16 +97,8 @@ function SceneSwap.DisplayPlayer()
     local playerColor = love.graphics.newImage(PlayerColor)
     local playerHat = love.graphics.newImage(PlayerHat)
 
-    love.graphics.draw(playerColor, player.x - player.size / 2, player.y - player.size / 2, 0, 0.4)
-    if PlayerHat == PlayerCustomization.hats["Cap"] then
-        love.graphics.draw(playerHat, player.x - (player.size / 2) + 19, player.y - (player.size / 2) - 25, 0, 0.7)
-    elseif PlayerHat == PlayerCustomization.hats["Horns"] then
-        love.graphics.draw(playerHat, player.x - (player.size / 2) + 13, player.y - player.size / 2, 0, 0.3)
-    elseif PlayerHat == PlayerCustomization.hats["Propel"] then
-        love.graphics.draw(playerHat, player.x - (player.size / 2) + 11, player.y - (player.size / 2) - 15 , 0, 0.7)
-    elseif PlayerHat == PlayerCustomization.hats["Top"] then
-        love.graphics.draw(playerHat, player.x - (player.size / 2) + 15, player.y - (player.size / 2) - 55, 0, 0.6)
-    end
+    DisplayRotation.Player(playerColor)
+    DisplayRotation.Hat(playerHat)
 end
 
 function SceneSwap.DisplaySceneSwap()

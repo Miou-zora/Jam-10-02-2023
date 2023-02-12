@@ -10,8 +10,8 @@ function Bat.load()
     BatSpeed = 0.1
     Bat.speed = 100
     BatPlayer = {x = 1920 / 3.7, y = 1080 / 2, direction = 1}
-    for i = 1, 3 do
-        BatFrames[i] = love.graphics.newImage("assets/other/Bee_" .. i .. ".png")
+    for i = 1, 4 do
+        BatFrames[i] = love.graphics.newImage("assets/character/bat_" .. i .. ".png")
     end
 end
 
@@ -44,9 +44,9 @@ function Bat.draw()
     love.graphics.setColor(1, 1, 1)
     love.graphics.push()
     if BatPlayer.direction == -1 then
-        love.graphics.draw(BatFrames[BatFrame], BatPlayer.x, BatPlayer.y, 0, 0.8)
+        love.graphics.draw(BatFrames[BatFrame], BatPlayer.x, BatPlayer.y, 0, 1.5)
     else
-        love.graphics.draw(BatFrames[BatFrame], BatPlayer.x, BatPlayer.y, 0, -0.8, 0.8)
+        love.graphics.draw(BatFrames[BatFrame], BatPlayer.x, BatPlayer.y, 0, -1.5, 1.5)
     end
     love.graphics.pop()
 end
