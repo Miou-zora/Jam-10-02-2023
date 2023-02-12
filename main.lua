@@ -43,11 +43,10 @@ function love.draw()
     end
     Bat.draw()
     GameActions.drawTitle()
+    love.mouse.setVisible(true)
+    GameActions.drawTitle()
     if ActualGameState == GameState["PlayerCustomization"] then
-        PlayerCustomization.draw()
-    end
-    if ActualGameState == GameState["PlayerCustomization"] then
-        PlayerCustomization.draw()
+      PlayerCustomization.draw()
     end
 end
 
