@@ -96,17 +96,9 @@ end
 function SceneSwap.DisplayPlayer()
     local playerColor = love.graphics.newImage(PlayerColor)
     local playerHat = love.graphics.newImage(PlayerHat)
-    
+
     DisplayRotation.Player(playerColor)
-    if PlayerHat == PlayerCustomization.hats["Cap"] then
-        DisplayRotation.Cap(playerHat)
-    elseif PlayerHat == PlayerCustomization.hats["Horns"] then
-        DisplayRotation.Horns(playerHat)
-    elseif PlayerHat == PlayerCustomization.hats["Propel"] then
-        DisplayRotation.Propel(playerHat)
-    elseif PlayerHat == PlayerCustomization.hats["Top"] then
-        DisplayRotation.Top(playerHat)
-    end
+    DisplayRotation.Hat(playerHat)
 end
 
 function SceneSwap.DisplaySceneSwap()
