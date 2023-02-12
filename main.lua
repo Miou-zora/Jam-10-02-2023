@@ -15,8 +15,6 @@ function love.load()
 
     Sound.load()
 
-    Sound.Play(Sound.Musics.MainMenu)
-
     SceneSwap.LoadSceneSwap()
     GameActions.load()
     PlayerCustomization.load()
@@ -66,4 +64,8 @@ end
 
 function love.keypressed(key)
     Button.keypressed(key)
+end
+
+function love.mousemoved(x, y, dx, dy, istouch)
+    Button.MouseMoved(x, y, dx, dy, istouch)
 end

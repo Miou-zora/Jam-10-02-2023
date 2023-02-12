@@ -4,31 +4,22 @@ Sound = {}
 
 Sound.Music = {}
 
-Sound.Musics = {}
+Sound.Musics = {InGame = nil, MainMenu = nil}
 
 Sound.LastMusic = nil
 
 function Sound.Music.GetVolume()
-    return Sound.LastMusic:getVolume()
+    return love.audio.getVolume()
 end
 
 function Sound.Music.SetVolume(value)
-    Sound.LastMusic:setVolume(value)
+    love.audio.setVolume(value)
 end
 
 local function InitButtons()
     local WW = love.graphics.getWidth()
     local WH = love.graphics.getHeight()
-    -- Button.AddButton(createSliderButton({x = WW / 2 - WW / 10, y = WH / 8 * 3}, {x = 200, y = 200}, "Music", Sound.Music.GetVolume, Sound.Music.SetVolume, GameActions.GameState.Option))
-end
-
-function Sound.load()
-    Sound.Musics = {
-        InGame = love.audio.newSource("assets/sounds/InGame.mp3", "stream"),
-        MainMenu = love.audio.newSource("assets/sounds/MainMenu.mp3", "stream")
-    }
-
-    InitButtons()
+    Button.AddButton(createSliderButton({x = WW / 2 - WW / 10, y = WH / 8 * 4}, {x = WW / 5, y = WH / 15}, "Music", Sound.Music.GetVolume, Sound.Music.SetVolume, GameActions.GameState.Option))
 end
 
 function Sound.Play(music)
@@ -37,4 +28,13 @@ function Sound.Play(music)
     end
     love.audio.play(music)
     Sound.LastMusic = music
+end
+
+function Sound.load()
+    Sound.Musics = {
+        InGame = love.audio.newSource("assets/sounds/InGame.mp3", "stream"),
+        MainMenu = love.audio.newSource("assets/sounds/MainMenu.mp3", "stream")
+    }
+    Sound.Play(Sound.Musics.InGame)
+    InitButtons()
 end

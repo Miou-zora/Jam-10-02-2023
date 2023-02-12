@@ -3,10 +3,44 @@ require "src/PlayerCustomization"
 
 Button = {}
 
-Button.Font = love.graphics.newFont(love.graphics.getWidth())
+Button.Font = love.graphics.newFont(love.graphics.getWidth() / 20)
 Button.ButtonType = {Classic = "Classic", Slider = "Slider", Arrow = "Arrow"}
-Button.DrawButtonFunction = {Classic = DrawClassicButton, Slider = DrawSliderButton, Arrow = DrawArrowButton}
 Button.AllButtons = {}
+
+function DrawClassicButton(button)
+    love.graphics.push()
+    love.graphics.setColor(1, 1, 1)
+    love.graphics.translate(button.pos.x, button.pos.y)
+    love.graphics.rectangle("fill", 0, 0, button.size.x, button.size.y)
+
+    love.graphics.setColor(0, 0, 0)
+    love.graphics.draw(button.text, button.size.x / 2 - button.text:getWidth() / 2 , button.size.y / 2 - button.text:getHeight() / 2)
+    love.graphics.pop()
+end
+
+function DrawSliderButton(button)
+    local thickness = button.size.y / 20
+
+    love.graphics.push()
+    love.graphics.setColor(1, 1, 1)
+    love.graphics.translate(button.pos.x, button.pos.y)
+    love.graphics.rectangle("fill", 0, button.size.y / 1.33 - thickness / 2, button.size.x, thickness)
+    love.graphics.ellipse("fill", button.reference() * button.size.x, button.size.y / 1.33 - thickness / 2, button.size.y / 5, button.size.y / 5)
+    love.graphics.setColor(1, 1, 1)
+    love.graphics.draw(button.text, button.size.x / 2 - button.text:getWidth() / 2 , -button.text:getHeight() / 2)
+    love.graphics.pop()
+end
+
+function DrawArrowButton(button)
+    love.graphics.push()
+    love.graphics.origin()
+    love.graphics.setColor(1, 1, 1)
+    love.graphics.translate(button.pos.x, button.pos.y)
+    love.graphics.polygon("fill", button.vertices)
+    love.graphics.pop()
+end
+
+Button.DrawButtonFunction = {Classic = DrawClassicButton, Slider = DrawSliderButton, Arrow = DrawArrowButton}
 
 function Button.AddButton(button)
     Button.AllButtons[#Button.AllButtons + 1] = button
@@ -25,13 +59,12 @@ function createClassicButton(pos, size, stringText, action, requireState)
     return button
 end
 
-function createSliderButton(pos, size, stringText, reference, action, requireState)
+function createSliderButton(pos, size, stringText, reference, update, requireState)
     local button = {}
     button.pos = pos
     button.size = size
     button.stringText = stringText
     button.text = love.graphics.newText(Button.Font, stringText)
-    button.action = action
     button.type = Button.ButtonType.Slider
     button.reference = reference
     button.isPressed = false
@@ -40,29 +73,6 @@ function createSliderButton(pos, size, stringText, reference, action, requireSta
     return button
 end
 
-function DrawClassicButton(button)
-    love.graphics.push()
-    love.graphics.setColor(1, 1, 1)
-    love.graphics.translate(button.pos.x, button.pos.y)
-    love.graphics.rectangle("fill", 0, 0, button.size.x, button.size.y)
-
-    love.graphics.setColor(0, 0, 0)
-    love.graphics.draw(button.text, button.size.x / 2 - button.text:getWidth() / 2 , button.size.y / 2 - button.text:getHeight() / 2)
-    love.graphics.pop()
-end
-
-function DrawSliderButton(button)
-    local thickness = button.size.y / 10
-
-    love.graphics.push()
-    love.graphics.setColor(1, 1, 1)
-    love.graphics.translate(button.pos.x, button.pos.y)
-    love.graphics.rectangle("fill", 0, button.size.y / 1.33 - thickness / 2, button.size.x, thickness)
-    love.graphics.ellipse("fill", button.reference() * button.size.x, button.size.y / 1.33 - thickness / 2, button.size.y, button.size.y)
-    love.graphics.setColor(1, 1, 1)
-    love.graphics.draw(button.text, button.size.x / 2 - button.text:getWidth() / 2 , - button.size.y * 2)
-    love.graphics.pop()
-end
 
 function createArrowButton(pos, size, action, requireState, rotation)
     local button = {}
@@ -85,14 +95,6 @@ function createArrowButton(pos, size, action, requireState, rotation)
     return button
 end
 
-function DrawArrowButton(button)
-    love.graphics.push()
-    love.graphics.origin()
-    love.graphics.setColor(1, 1, 1)
-    love.graphics.translate(button.pos.x, button.pos.y)
-    love.graphics.polygon("fill", button.vertices)
-    love.graphics.pop()
-end
 
 function Button.load()
     local WW = love.graphics.getWidth()
@@ -148,11 +150,11 @@ end
 
 function Button.mousereleased(x, y, btn)
     for i = 1, #Button.AllButtons do
-        if Button.AllButtons[i].requireState == ActualGameState and Button.AllButtons[i].isPressed then
+        if Button.AllButtons[i].isPressed then
             if btn == 1 then
+                Button.AllButtons[i].isPressed = false
                 if isCollide({x = x, y = y}, {x = Button.AllButtons[i].pos.x, y = Button.AllButtons[i].pos.y, dx = Button.AllButtons[i].size.x, dy = Button.AllButtons[i].size.y}) then
-                    Button.AllButtons[i].isPressed = false
-                    if Button.AllButtons[i].action ~= nil then
+                    if Button.AllButtons[i].action ~= nil and Button.AllButtons[i].requireState == ActualGameState then
                         Button.AllButtons[i].action()
                     end
                 end
@@ -167,6 +169,22 @@ function Button.keypressed(key)
             GameActions.setGameStatePause()
         elseif ActualGameState == GameState["Pause"] then
             GameActions.setGameStatePlay()
+        end
+    end
+end
+
+function Button.MouseMoved(x, y, dx, dy, istouch)
+    for i = 1, #Button.AllButtons do
+        if Button.AllButtons[i].requireState == ActualGameState then
+            if Button.AllButtons[i].isPressed and Button.AllButtons[i].update ~= nil then
+                local value = (x - Button.AllButtons[i].pos.x) / Button.AllButtons[i].size.x
+                if value < 0 then
+                    value = 0
+                elseif value > 1 then
+                    value = 1
+                end
+                Button.AllButtons[i].update(value)
+            end
         end
     end
 end
