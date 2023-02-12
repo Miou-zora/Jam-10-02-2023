@@ -25,7 +25,10 @@ function GameActions.load()
     PossibleTitle = {
         "Trans",
         "Classic",
-        "ClassicBlack"
+        "Asexual",
+        "Aromantic",
+        "Genderfluid",
+        "NonBinary"
     }
     Title = love.graphics.newImage("assets/Title/" ..PossibleTitle[love.math.random(#PossibleTitle)].. ".png")
 end
