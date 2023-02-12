@@ -13,7 +13,8 @@ function Particle.Update(dt)
                 y = love.math.random(0, 1080),
                 xv = love.math.random(-100, 100),
                 yv = love.math.random(-100, 100),
-                ttl = love.math.random(0.5, 1)
+                ttl = love.math.random(0.5, 1),
+                color = {1, 1, 1}
             }
             table.insert(particles, particle)
         end
@@ -30,7 +31,8 @@ end
 
 function Particle.draw()
     for _, particle in ipairs(particles) do
-        love.graphics.setColor(1, 1, 1)
+        love.graphics.setColor(particle.color[1], particle.color[2], particle.color[3])
         love.graphics.points(particle.x, particle.y)
     end
+    love.graphics.setColor(1, 1, 1)
 end
