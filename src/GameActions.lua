@@ -1,5 +1,13 @@
 GameActions = {}
 
+GameActions.GameState = {
+    Menu = "Menu",
+    Option = "Option",
+    Game = "Game",
+    Pause = "Pause",
+    End = "End"
+}
+
 function GameActions.load()
     GameState = {
         Menu = "Menu",

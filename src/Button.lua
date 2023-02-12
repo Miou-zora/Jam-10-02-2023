@@ -3,66 +3,76 @@ require "src/PlayerCustomization"
 
 Button = {}
 
-borderColor = {0.75, 0.75, 1.0}
+Button.Font = love.graphics.newFont(love.graphics.getWidth() / 20)
+Button.ButtonType = {Classic = "Classic", Slider = "Slider", Arrow = "Arrow"}
+Button.AllButtons = {}
 
-local function createClassicButton(pos, size, stringText, action, requireState)
-    local button = {}
-    button.pos = {x = pos.x, y = pos.y}
-    button.size = {x = size.x, y = size.y}
-    button.stringText = stringText
-    button.text = love.graphics.newText(font, stringText)
-    button.requireState = requireState
-    button.action = action
-    button.type = ButtonType.Classic
-    button.isPressed = false
-    return button
-end
-
-local function createSliderButton(pos, size, stringText, reference, action, update)
-    local button = {}
-    button.pos = pos
-    button.size = size
-    button.stringText = stringText
-    button.text = love.graphics.newText(font, stringText)
-    button.action = action
-    button.type = ButtonType.Slider
-    button.reference = reference
-    button.isPressed = false
-    button.update = update
-    return button
-end
-
-local function DrawClassicButton(button)
+function DrawClassicButton(button)
     love.graphics.push()
+    love.graphics.setColor(1, 1, 1)
     love.graphics.translate(button.pos.x, button.pos.y)
-
-    local radius = 10
-
-    love.graphics.setColor(borderColor)
-    love.graphics.arc("fill", radius, radius, radius, math.pi, -math.pi, 20)
-    love.graphics.arc("fill", button.size.x-radius, radius, radius, -math.pi/2, 0, 20)
-    love.graphics.arc("fill", button.size.x-radius, button.size.y-radius, radius, 0, math.pi/2, 20)
-    love.graphics.arc("fill", radius, button.size.y-radius, radius, math.pi/2, math.pi, 20)
-
-    love.graphics.rectangle("fill", radius, 0, button.size.x-radius*2, button.size.y)
-    love.graphics.rectangle("fill", 0, radius, button.size.x, button.size.y-radius*2)
+    love.graphics.rectangle("fill", 0, 0, button.size.x, button.size.y)
 
     love.graphics.setColor(0, 0, 0)
     love.graphics.draw(button.text, button.size.x / 2 - button.text:getWidth() / 2 , button.size.y / 2 - button.text:getHeight() / 2)
     love.graphics.pop()
 end
 
-local function DrawSliderButton(button)
-    local thickness = button.size.y / 10
+function DrawSliderButton(button)
+    local thickness = button.size.y / 20
 
     love.graphics.push()
     love.graphics.setColor(1, 1, 1)
     love.graphics.translate(button.pos.x, button.pos.y)
     love.graphics.rectangle("fill", 0, button.size.y / 1.33 - thickness / 2, button.size.x, thickness)
-    love.graphics.ellipse("fill", button.reference() * button.size.x, button.size.y / 1.33 - thickness / 2, button.size.y, button.size.y)
+    love.graphics.ellipse("fill", button.reference() * button.size.x, button.size.y / 1.33 - thickness / 2, button.size.y / 5, button.size.y / 5)
     love.graphics.setColor(1, 1, 1)
-    love.graphics.draw(button.text, button.size.x / 2 - button.text:getWidth() / 2 , - button.size.y * 2)
+    love.graphics.draw(button.text, button.size.x / 2 - button.text:getWidth() / 2 , -button.text:getHeight() / 2)
     love.graphics.pop()
+end
+
+function DrawArrowButton(button)
+    love.graphics.push()
+    love.graphics.origin()
+    love.graphics.setColor(1, 1, 1)
+    love.graphics.translate(button.pos.x, button.pos.y)
+    love.graphics.polygon("fill", button.vertices)
+    love.graphics.pop()
+end
+
+Button.DrawButtonFunction = {Classic = DrawClassicButton, Slider = DrawSliderButton, Arrow = DrawArrowButton}
+
+function Button.AddButton(button)
+    Button.AllButtons[#Button.AllButtons + 1] = button
+end
+
+borderColor = {0.75, 0.75, 1.0}
+
+function createClassicButton(pos, size, stringText, action, requireState)
+    local button = {}
+    button.pos = {x = pos.x, y = pos.y}
+    button.size = {x = size.x, y = size.y}
+    button.stringText = stringText
+    button.text = love.graphics.newText(Button.Font, stringText)
+    button.requireState = requireState
+    button.action = action
+    button.type = Button.ButtonType.Classic
+    button.isPressed = false
+    return button
+end
+
+function createSliderButton(pos, size, stringText, reference, update, requireState)
+    local button = {}
+    button.pos = pos
+    button.size = size
+    button.stringText = stringText
+    button.text = love.graphics.newText(Button.Font, stringText)
+    button.type = Button.ButtonType.Slider
+    button.reference = reference
+    button.isPressed = false
+    button.update = update
+    button.requireState = requireState
+    return button
 end
 
 function createArrowButton(pos, size, action, requireState, rotation)
@@ -71,7 +81,7 @@ function createArrowButton(pos, size, action, requireState, rotation)
     button.size = {x = size.x, y = size.y}
     button.requireState = requireState
     button.action = action
-    button.type = ButtonType.Arrow
+    button.type = Button.ButtonType.Arrow
     button.isPressed = false
     button.vertices = {}
     if rotation == "left" then
@@ -86,14 +96,6 @@ function createArrowButton(pos, size, action, requireState, rotation)
     return button
 end
 
-function DrawArrowButton(button)
-    love.graphics.push()
-    love.graphics.origin()
-    love.graphics.setColor(1, 1, 1)
-    love.graphics.translate(button.pos.x, button.pos.y)
-    love.graphics.polygon("fill", button.vertices)
-    love.graphics.pop()
-end
 
 Credit = {}
 
@@ -110,42 +112,34 @@ end
 function Button.load()
     local WW = love.graphics.getWidth()
     local WH = love.graphics.getHeight()
-
-    font = love.graphics.newFont(WW / 50)
-
-    ButtonType = {Classic = "Classic", Slider = "Slider", Arrow = "Arrow"}
-    DrawButtonFunction = {Classic = DrawClassicButton, Slider = DrawSliderButton, Arrow = DrawArrowButton}
-
-    AllButtons = {}
     -- Main Menu
-    AllButtons[1] = createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 3}, {x = WW / 5, y = WH / 15}, "Play", GameActions.setGameStatePlay, GameState["Menu"])
-    AllButtons[2] = createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 4}, {x = WW / 5, y = WH / 15}, "Player Custom", PlayerCustomization.setGameStatePlayerCustomization, GameState["Menu"])
-    AllButtons[3] = createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 5}, {x = WW / 5, y = WH / 15}, "Options", GameActions.setGameStateOption, GameState["Menu"])
-    AllButtons[4] = createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 6}, {x = WW / 5, y = WH / 15}, "Quit", GameActions.closeGame, GameState["Menu"])
+    Button.AddButton(createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 3}, {x = WW / 5, y = WH / 15}, "Play", GameActions.setGameStatePlay, GameState["Menu"]))
+    Button.AddButton(createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 4}, {x = WW / 5, y = WH / 15}, "Player Custom", PlayerCustomization.setGameStatePlayerCustomization, GameState["Menu"]))
+    Button.AddButton(createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 5}, {x = WW / 5, y = WH / 15}, "Options", GameActions.setGameStateOption, GameState["Menu"]))
+    Button.AddButton(createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 6}, {x = WW / 5, y = WH / 15}, "Quit", GameActions.closeGame, GameState["Menu"]))
 
     -- Option
-    AllButtons[5] = createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 5}, {x = WW / 5, y = WH / 15}, "Back", GameActions.setGameStateBack, GameState["Option"])
+    Button.AddButton(createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 5}, {x = WW / 5, y = WH / 15}, "Back", GameActions.setGameStateBack, GameState["Option"]))
 
     -- Pause
-    AllButtons[6] = createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 4}, {x = WW / 5, y = WH / 15}, "Resume", GameActions.setGameStatePlay, GameState["Pause"])
-    AllButtons[7] = createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 5}, {x = WW / 5, y = WH / 15}, "Options", GameActions.setGameStateOption, GameState["Pause"])
-    AllButtons[8] = createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 6}, {x = WW / 5, y = WH / 15}, "Main Menu", GameActions.setGameStateMenu, GameState["Pause"])
+    Button.AddButton(createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 4}, {x = WW / 5, y = WH / 15}, "Resume", GameActions.setGameStatePlay, GameState["Pause"]))
+    Button.AddButton(createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 5}, {x = WW / 5, y = WH / 15}, "Options", GameActions.setGameStateOption, GameState["Pause"]))
+    Button.AddButton(createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 6}, {x = WW / 5, y = WH / 15}, "Main Menu", GameActions.setGameStateMenu, GameState["Pause"]))
 
     -- Player Custom
-    AllButtons[9] = createArrowButton({x = WW / 2 - WW / 6, y = WH / 8 * 3}, {x = WW / 40, y = WW / 40}, PlayerCustomization.incPlayerHat, GameState["PlayerCustomization"], "left")
-    AllButtons[10] = createArrowButton({x = WW / 2 + WW / 6, y = WH / 8 * 3}, {x = WW / 40, y = WW / 40}, PlayerCustomization.decrPlayerHat, GameState["PlayerCustomization"], "right")
-    AllButtons[11] = createArrowButton({x = WW / 2 - WW / 6, y = WH / 8 * 4}, {x = WW / 40, y = WW / 40}, PlayerCustomization.incPlayerColor, GameState["PlayerCustomization"], "left")
-    AllButtons[12] = createArrowButton({x = WW / 2 + WW / 6, y = WH / 8 * 4}, {x = WW / 40, y = WW / 40}, PlayerCustomization.decrPlayerColor, GameState["PlayerCustomization"], "right")
-    AllButtons[13] = createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 5}, {x = WW / 5, y = WH / 15}, "Back", GameActions.setGameStateBack, GameState["PlayerCustomization"])
+    Button.AddButton(createArrowButton({x = WW / 2 - WW / 6, y = WH / 8 * 3}, {x = WW / 40, y = WW / 40}, PlayerCustomization.incPlayerHat, GameState["PlayerCustomization"], "left"))
+    Button.AddButton(createArrowButton({x = WW / 2 + WW / 6, y = WH / 8 * 3}, {x = WW / 40, y = WW / 40}, PlayerCustomization.decrPlayerHat, GameState["PlayerCustomization"], "right"))
+    Button.AddButton(createArrowButton({x = WW / 2 - WW / 6, y = WH / 8 * 4}, {x = WW / 40, y = WW / 40}, PlayerCustomization.incPlayerColor, GameState["PlayerCustomization"], "left"))
+    Button.AddButton(createArrowButton({x = WW / 2 + WW / 6, y = WH / 8 * 4}, {x = WW / 40, y = WW / 40}, PlayerCustomization.decrPlayerColor, GameState["PlayerCustomization"], "right"))
+    Button.AddButton(createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 5}, {x = WW / 5, y = WH / 15}, "Back", GameActions.setGameStateBack, GameState["PlayerCustomization"]))
 
-    -- Credit
     Credit.load()
 end
 
 function Button.draw()
-    for i = 1, #AllButtons do
-        if AllButtons[i].requireState == ActualGameState then
-            DrawButtonFunction[AllButtons[i].type](AllButtons[i])
+    for i = 1, #Button.AllButtons do
+        if Button.AllButtons[i].requireState == ActualGameState then
+            Button.DrawButtonFunction[Button.AllButtons[i].type](Button.AllButtons[i])
         end
     end
 end
@@ -160,23 +154,23 @@ local function isCollide(pos, rect)
 end
 
 function Button.mousepressed(x, y, btn, istouch)
-    for i = 1, #AllButtons do
-        if AllButtons[i].requireState == ActualGameState then
+    for i = 1, #Button.AllButtons do
+        if Button.AllButtons[i].requireState == ActualGameState then
             if btn == 1 then
-                AllButtons[i].isPressed = true
+                Button.AllButtons[i].isPressed = true
             end
         end
     end
 end
 
 function Button.mousereleased(x, y, btn)
-    for i = 1, #AllButtons do
-        if AllButtons[i].requireState == ActualGameState and AllButtons[i].isPressed then
+    for i = 1, #Button.AllButtons do
+        if Button.AllButtons[i].isPressed then
             if btn == 1 then
-                if isCollide({x = x, y = y}, {x = AllButtons[i].pos.x, y = AllButtons[i].pos.y, dx = AllButtons[i].size.x, dy = AllButtons[i].size.y}) then
-                    AllButtons[i].isPressed = false
-                    if AllButtons[i].action ~= nil then
-                        AllButtons[i].action()
+                Button.AllButtons[i].isPressed = false
+                if isCollide({x = x, y = y}, {x = Button.AllButtons[i].pos.x, y = Button.AllButtons[i].pos.y, dx = Button.AllButtons[i].size.x, dy = Button.AllButtons[i].size.y}) then
+                    if Button.AllButtons[i].action ~= nil and Button.AllButtons[i].requireState == ActualGameState then
+                        Button.AllButtons[i].action()
                     end
                 end
             end
@@ -190,6 +184,22 @@ function Button.keypressed(key)
             GameActions.setGameStatePause()
         elseif ActualGameState == GameState["Pause"] then
             GameActions.setGameStatePlay()
+        end
+    end
+end
+
+function Button.MouseMoved(x, y, dx, dy, istouch)
+    for i = 1, #Button.AllButtons do
+        if Button.AllButtons[i].requireState == ActualGameState then
+            if Button.AllButtons[i].isPressed and Button.AllButtons[i].update ~= nil then
+                local value = (x - Button.AllButtons[i].pos.x) / Button.AllButtons[i].size.x
+                if value < 0 then
+                    value = 0
+                elseif value > 1 then
+                    value = 1
+                end
+                Button.AllButtons[i].update(value)
+            end
         end
     end
 end
