@@ -1,84 +1,84 @@
-0 0 20 assets/plateforms/Block_Dungeon_CornerConnector_DLeft.png
-80 0 20 assets/plateforms/Block_Dungeon_Down.png
-160 0 20 assets/plateforms/Block_Dungeon_Down.png
-240 0 20 assets/plateforms/Block_Dungeon_Down.png
-320 0 20 assets/plateforms/Block_Dungeon_Down.png
-400 0 20 assets/plateforms/Block_Dungeon_Down.png
-480 0 20 assets/plateforms/Block_Dungeon_Corner_DLeft.png
-1280 0 20 assets/plateforms/Block_Dungeon_Corner_DRight.png
-1360 0 20 assets/plateforms/Block_Dungeon_Down.png
-1440 0 20 assets/plateforms/Block_Dungeon_Down.png
-1520 0 20 assets/plateforms/Block_Dungeon_Down.png
-1600 0 20 assets/plateforms/Block_Dungeon_Down.png
-1680 0 20 assets/plateforms/Block_Dungeon_Down.png
-1760 0 20 assets/plateforms/Block_Dungeon_Down.png
-1840 0 20 assets/plateforms/Block_Dungeon_CornerConnector_DRight.png
-0 80 20 assets/plateforms/Block_Dungeon_Basic_Right.png
-1840 80 20 assets/plateforms/Block_Dungeon_Basic_Left.png
-0 160 20 assets/plateforms/Block_Dungeon_Basic_Right.png
-640 160 20 assets/plateforms/Block_Dungeon_Clean.png
-720 160 20 assets/plateforms/Block_Dungeon_Clean.png
-800 160 20 assets/plateforms/Block_Dungeon_Clean.png
-880 160 20 assets/plateforms/Block_Dungeon_Clean.png
-960 160 20 assets/plateforms/Block_Dungeon_Clean.png
-1040 160 20 assets/plateforms/Block_Dungeon_Clean.png
-1120 160 20 assets/plateforms/Block_Dungeon_Clean.png
-1840 160 20 assets/plateforms/Block_Dungeon_Basic_Left.png
-0 240 20 assets/plateforms/Block_Dungeon_Basic_Right.png
-1840 240 20 assets/plateforms/Block_Dungeon_Basic_Left.png
-0 320 20 assets/plateforms/Block_Dungeon_Basic_Right.png
-1840 320 20 assets/plateforms/Block_Dungeon_Basic_Left.png
-0 400 20 assets/plateforms/Block_Dungeon_Basic_Right.png
-240 400 20 assets/plateforms/Block_Dungeon_Clean.png
-320 400 20 assets/plateforms/Block_Dungeon_Clean.png
-400 400 20 assets/plateforms/Block_Dungeon_Clean.png
-480 400 20 assets/plateforms/Block_Dungeon_Clean.png
-560 400 20 assets/plateforms/Block_Dungeon_Clean.png
-1200 400 20 assets/plateforms/Block_Dungeon_Clean.png
-1280 400 20 assets/plateforms/Block_Dungeon_Clean.png
-1360 400 20 assets/plateforms/Block_Dungeon_Clean.png
-1440 400 20 assets/plateforms/Block_Dungeon_Clean.png
-1520 400 20 assets/plateforms/Block_Dungeon_Clean.png
-1600 400 20 assets/plateforms/Block_Dungeon_Clean.png
-1840 400 20 assets/plateforms/Block_Dungeon_Basic_Left.png
-0 480 20 assets/plateforms/Block_Dungeon_Basic_Right.png
-1840 480 20 assets/plateforms/Block_Dungeon_Basic_Left.png
-0 560 20 assets/plateforms/Block_Dungeon_Basic_Right.png
-1840 560 20 assets/plateforms/Block_Dungeon_Basic_Left.png
-0 640 20 assets/plateforms/Block_Dungeon_Basic_Right.png
-720 640 20 assets/plateforms/Block_Dungeon_Clean.png
-800 640 20 assets/plateforms/Block_Dungeon_Clean.png
-880 640 20 assets/plateforms/Block_Dungeon_Clean.png
-960 640 20 assets/plateforms/Block_Dungeon_Clean.png
-1040 640 20 assets/plateforms/Block_Dungeon_Clean.png
-1840 640 20 assets/plateforms/Block_Dungeon_Basic_Left.png
-0 720 20 assets/plateforms/Block_Dungeon_Basic_Right.png
-1840 720 20 assets/plateforms/Block_Dungeon_Basic_Left.png
-0 800 20 assets/plateforms/Block_Dungeon_Basic_Right.png
-1840 800 20 assets/plateforms/Block_Dungeon_Basic_Left.png
-0 880 20 assets/plateforms/Block_Dungeon_Basic_Right.png
-1840 880 20 assets/plateforms/Block_Dungeon_Basic_Left.png
-0 960 20 assets/plateforms/Block_Dungeon_CornerConnector_Right.png
-80 960 20 assets/plateforms/Block_Dungeon_Basic.png
-160 960 20 assets/plateforms/Block_Dungeon_Basic.png
-240 960 20 assets/plateforms/Block_Dungeon_Basic.png
-320 960 20 assets/plateforms/Block_Dungeon_Basic.png
-400 960 20 assets/plateforms/Block_Dungeon_Basic.png
-480 960 20 assets/plateforms/Block_Dungeon_Basic.png
-560 960 20 assets/plateforms/Block_Dungeon_Basic.png
-640 960 20 assets/plateforms/Block_Dungeon_Basic.png
-720 960 20 assets/plateforms/Block_Dungeon_Basic.png
-800 960 20 assets/plateforms/Block_Dungeon_Basic.png
-880 960 20 assets/plateforms/Block_Dungeon_Basic.png
-960 960 20 assets/plateforms/Block_Dungeon_Basic.png
-1040 960 20 assets/plateforms/Block_Dungeon_Basic.png
-1120 960 20 assets/plateforms/Block_Dungeon_Basic.png
-1200 960 20 assets/plateforms/Block_Dungeon_Basic.png
-1280 960 20 assets/plateforms/Block_Dungeon_Basic.png
-1360 960 20 assets/plateforms/Block_Dungeon_Basic.png
-1440 960 20 assets/plateforms/Block_Dungeon_Basic.png
-1520 960 20 assets/plateforms/Block_Dungeon_Basic.png
-1600 960 20 assets/plateforms/Block_Dungeon_Basic.png
-1680 960 20 assets/plateforms/Block_Dungeon_Basic.png
-1760 960 20 assets/plateforms/Block_Dungeon_Basic.png
-1840 960 20 assets/plateforms/Block_Dungeon_CornerConnector_Left.png
+0 0 20 0 assets/plateforms/Block_Dungeon_CornerConnector_DLeft.png
+80 0 20 0 assets/plateforms/Block_Dungeon_Down.png
+160 0 20 0 assets/plateforms/Block_Dungeon_Down.png
+240 0 20 0 assets/plateforms/Block_Dungeon_Down.png
+320 0 20 0 assets/plateforms/Block_Dungeon_Down.png
+400 0 20 0 assets/plateforms/Block_Dungeon_Down.png
+480 0 20 0 assets/plateforms/Block_Dungeon_Corner_DLeft.png
+1280 0 20 0 assets/plateforms/Block_Dungeon_Corner_DRight.png
+1360 0 20 0 assets/plateforms/Block_Dungeon_Down.png
+1440 0 20 0 assets/plateforms/Block_Dungeon_Down.png
+1520 0 20 0 assets/plateforms/Block_Dungeon_Down.png
+1600 0 20 0 assets/plateforms/Block_Dungeon_Down.png
+1680 0 20 0 assets/plateforms/Block_Dungeon_Down.png
+1760 0 20 0 assets/plateforms/Block_Dungeon_Down.png
+1840 0 20 0 assets/plateforms/Block_Dungeon_CornerConnector_DRight.png
+0 80 20 0 assets/plateforms/Block_Dungeon_Basic_Right.png
+1840 80 20 0 assets/plateforms/Block_Dungeon_Basic_Left.png
+0 160 20 0 assets/plateforms/Block_Dungeon_Basic_Right.png
+640 160 20 0 assets/plateforms/Block_Dungeon_Clean.png
+720 160 20 0 assets/plateforms/Block_Dungeon_Clean.png
+800 160 20 0 assets/plateforms/Block_Dungeon_Clean.png
+880 160 20 0 assets/plateforms/Block_Dungeon_Clean.png
+960 160 20 0 assets/plateforms/Block_Dungeon_Clean.png
+1040 160 20 0 assets/plateforms/Block_Dungeon_Clean.png
+1120 160 20 0 assets/plateforms/Block_Dungeon_Clean.png
+1840 160 20 0 assets/plateforms/Block_Dungeon_Basic_Left.png
+0 240 20 0 assets/plateforms/Block_Dungeon_Basic_Right.png
+1840 240 20 0 assets/plateforms/Block_Dungeon_Basic_Left.png
+0 320 20 0 assets/plateforms/Block_Dungeon_Basic_Right.png
+1840 320 20 0 assets/plateforms/Block_Dungeon_Basic_Left.png
+0 400 20 0 assets/plateforms/Block_Dungeon_Basic_Right.png
+240 400 20 0 assets/plateforms/Block_Dungeon_Clean.png
+320 400 20 0 assets/plateforms/Block_Dungeon_Clean.png
+400 400 20 0 assets/plateforms/Block_Dungeon_Clean.png
+480 400 20 0 assets/plateforms/Block_Dungeon_Clean.png
+560 400 20 0 assets/plateforms/Block_Dungeon_Clean.png
+1200 400 20 0 assets/plateforms/Block_Dungeon_Clean.png
+1280 400 20 0 assets/plateforms/Block_Dungeon_Clean.png
+1360 400 20 0 assets/plateforms/Block_Dungeon_Clean.png
+1440 400 20 0 assets/plateforms/Block_Dungeon_Clean.png
+1520 400 20 0 assets/plateforms/Block_Dungeon_Clean.png
+1600 400 20 0 assets/plateforms/Block_Dungeon_Clean.png
+1840 400 20 0 assets/plateforms/Block_Dungeon_Basic_Left.png
+0 480 20 0 assets/plateforms/Block_Dungeon_Basic_Right.png
+1840 480 20 0 assets/plateforms/Block_Dungeon_Basic_Left.png
+0 560 20 0 assets/plateforms/Block_Dungeon_Basic_Right.png
+1840 560 20 0 assets/plateforms/Block_Dungeon_Basic_Left.png
+0 640 20 0 assets/plateforms/Block_Dungeon_Basic_Right.png
+720 640 20 0 assets/plateforms/Block_Dungeon_Clean.png
+800 640 20 0 assets/plateforms/Block_Dungeon_Clean.png
+880 640 20 0 assets/plateforms/Block_Dungeon_Clean.png
+960 640 20 0 assets/plateforms/Block_Dungeon_Clean.png
+1040 640 20 0 assets/plateforms/Block_Dungeon_Clean.png
+1840 640 20 0 assets/plateforms/Block_Dungeon_Basic_Left.png
+0 720 20 0 assets/plateforms/Block_Dungeon_Basic_Right.png
+1840 720 20 0 assets/plateforms/Block_Dungeon_Basic_Left.png
+0 800 20 0 assets/plateforms/Block_Dungeon_Basic_Right.png
+1840 800 20 0 assets/plateforms/Block_Dungeon_Basic_Left.png
+0 880 20 0 assets/plateforms/Block_Dungeon_Basic_Right.png
+1840 880 20 0 assets/plateforms/Block_Dungeon_Basic_Left.png
+0 960 20 0 assets/plateforms/Block_Dungeon_CornerConnector_Right.png
+80 960 20 0 assets/plateforms/Block_Dungeon_Basic.png
+160 960 20 0 assets/plateforms/Block_Dungeon_Basic.png
+240 960 20 0 assets/plateforms/Block_Dungeon_Basic.png
+320 960 20 0 assets/plateforms/Block_Dungeon_Basic.png
+400 960 20 0 assets/plateforms/Block_Dungeon_Basic.png
+480 960 20 0 assets/plateforms/Block_Dungeon_Basic.png
+560 960 20 0 assets/plateforms/Block_Dungeon_Basic.png
+640 960 20 0 assets/plateforms/Block_Dungeon_Basic.png
+720 960 20 0 assets/plateforms/Block_Dungeon_Basic.png
+800 960 20 0 assets/plateforms/Block_Dungeon_Basic.png
+880 960 20 0 assets/plateforms/Block_Dungeon_Basic.png
+960 960 20 0 assets/plateforms/Block_Dungeon_Basic.png
+1040 960 20 0 assets/plateforms/Block_Dungeon_Basic.png
+1120 960 20 0 assets/plateforms/Block_Dungeon_Basic.png
+1200 960 20 0 assets/plateforms/Block_Dungeon_Basic.png
+1280 960 20 0 assets/plateforms/Block_Dungeon_Basic.png
+1360 960 20 0 assets/plateforms/Block_Dungeon_Basic.png
+1440 960 20 0 assets/plateforms/Block_Dungeon_Basic.png
+1520 960 20 0 assets/plateforms/Block_Dungeon_Basic.png
+1600 960 20 0 assets/plateforms/Block_Dungeon_Basic.png
+1680 960 20 0 assets/plateforms/Block_Dungeon_Basic.png
+1760 960 20 0 assets/plateforms/Block_Dungeon_Basic.png
+1840 960 20 0 assets/plateforms/Block_Dungeon_CornerConnector_Left.png
