@@ -1,10 +1,10 @@
 Bat = {}
-local BatFrames = {}
-local BatFrame = 1
-local BatTime = 0
-local BatSpeed = 0.1
 
 function Bat.load()
+    BatFrames = {}
+    BatFrame = 1
+    BatTime = 0
+    BatSpeed = 0.1
     for i = 1, 3 do
         BatFrames[i] = love.graphics.newImage("assets/other/Bee_" .. i .. ".png")
     end
