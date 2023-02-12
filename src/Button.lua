@@ -103,8 +103,8 @@ function Credit.load()
 end
 
 function Credit.draw()
-    love.graphics.print("Alexandre Franquet                     Lylian Hay                         Matthias Gasté", 20, 940)
-    love.graphics.print("Aubane Nourry                          Alban Peralta                       Julien Renard", 20, 1000)
+    love.graphics.print("Alexandre Franquet                     Lylian Hay                         Matthias Gasté", 20, 890)
+    love.graphics.print("Aubane Nourry                          Alban Peralta                       Julien Renard", 20, 950)
 end
 
 function Button.load()
