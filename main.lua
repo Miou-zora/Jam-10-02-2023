@@ -39,9 +39,9 @@ function love.draw()
         Plateform.draw(plateforms)
         SceneSwap.DisplaySceneSwap()
         Particle.draw()
-        Bat.draw()
         return
     end
+    Bat.draw()
     GameActions.drawTitle()
     if ActualGameState == GameState["PlayerCustomization"] then
         PlayerCustomization.draw()

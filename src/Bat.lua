@@ -5,9 +5,24 @@ function Bat.load()
     BatFrame = 1
     BatTime = 0
     BatSpeed = 0.1
+    speed = 100
+    BatPlayer = {x = 1920 / 3.7, y = 1080 / 2, direction = 1}
     for i = 1, 3 do
         BatFrames[i] = love.graphics.newImage("assets/other/Bee_" .. i .. ".png")
     end
+end
+
+function Bat.SetDirection()
+    if BatPlayer.x <= 30 then
+        BatPlayer.direction = 1
+    elseif BatPlayer.x >= (1920 / 3.8) then
+        BatPlayer.direction = -1
+    end
+end
+
+function Bat.Move(dt)
+    Bat.SetDirection()
+    BatPlayer.x = BatPlayer.x + speed * BatPlayer.direction * dt
 end
 
 function Bat.Update(dt)
@@ -19,13 +34,16 @@ function Bat.Update(dt)
             BatFrame = 1
         end
     end
+    Bat.Move(dt)
 end
 
 function Bat.draw()
-    if BatActive == true then
-        love.graphics.setColor(1, 1, 1)
-        love.graphics.push()
-        love.graphics.draw(BatFrames[BatFrame], 1920 / 2, 1080 / 2, 0, 0.8)
-        love.graphics.pop()
+    love.graphics.setColor(1, 1, 1)
+    love.graphics.push()
+    if BatPlayer.direction == -1 then
+        love.graphics.draw(BatFrames[BatFrame], BatPlayer.x, BatPlayer.y, 0, 0.8)
+    else
+        love.graphics.draw(BatFrames[BatFrame], BatPlayer.x, BatPlayer.y, 0, -0.8, 0.8)
     end
+    love.graphics.pop()
 end

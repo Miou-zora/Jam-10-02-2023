@@ -1,8 +1,12 @@
 Particle = {}
 particles = {}
+local timer = 0
+local XP = 0.1
 
 function Particle.Update(dt)
-    if love.keyboard.isDown("space") then
+    timer = timer + dt
+    if timer >= XP then
+        timer = 0
         for i = 1, 100 do
             local particle = {
                 x = love.math.random(0, 1920),

@@ -1,6 +1,5 @@
 require "src/IsTouch"
 require "src/PlayerCustomization"
-require "src/Bat"
 
 MovePlayer = {}
 
@@ -9,7 +8,6 @@ function MovePlayer.Load()
     stick = {x = player.x, y = player.y - player.size, size = 50, angle = 0}
     speed = 100
     leftClickActive = false
-    BatActive = false
 end
 
 function MovePlayer.OrientationStick()
@@ -32,7 +30,6 @@ function MovePlayer.Move(dt)
             player.x = player.x - speed * player.v.x * dt
             player.y = player.y - speed * player.v.y * dt
             leftClickActive = false
-            BatActive = true
         end
     end
 end
