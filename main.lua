@@ -7,12 +7,15 @@ require "src/PlayerCustomization"
 require "src/GameActions"
 require "src/Bat"
 require "src/Particules"
+require "src/Sound"
 require "src/Cursor"
 require "src/Timer"
 
 function love.load()
     love.window.setMode(1920, 1080)
     love.window.setTitle("Jam Super Héros")
+
+    Sound.load()
 
     Cursor.load()
     SceneSwap.LoadSceneSwap()
@@ -69,4 +72,8 @@ end
 
 function love.keypressed(key)
     Button.keypressed(key)
+end
+
+function love.mousemoved(x, y, dx, dy, istouch)
+    Button.MouseMoved(x, y, dx, dy, istouch)
 end
