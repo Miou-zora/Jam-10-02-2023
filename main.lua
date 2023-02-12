@@ -10,6 +10,8 @@ require "src/Particules"
 require "src/Sound"
 require "src/Cursor"
 require "src/Timer"
+require "src/Feather"
+require "src/Item"
 
 function love.load()
     love.window.setMode(1920, 1080)
@@ -27,6 +29,7 @@ function love.load()
     path = "maps/map_simple"
     plateforms = Plateform.load(path)
     SceneSwap.LoadSceneSwap(plateforms)
+    Item.Load()
 end
 
 function love.update(dt)
@@ -35,6 +38,7 @@ function love.update(dt)
     Bat.Update(dt)
     Particle.Update(dt)
     Timer.Update(dt)
+    Item.Update(dt)
 end
 
 function love.draw()
@@ -47,6 +51,7 @@ function love.draw()
         SceneSwap.DisplaySceneSwap()
         Particle.draw()
         Timer.draw()
+        Item.Draw()
     else
         Bat.draw()
         GameActions.drawTitle()
@@ -76,4 +81,5 @@ end
 
 function love.mousemoved(x, y, dx, dy, istouch)
     Button.MouseMoved(x, y, dx, dy, istouch)
+    Item.MouseMoved(x, y, dx, dy, istouch)
 end
