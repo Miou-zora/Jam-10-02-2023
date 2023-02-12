@@ -84,6 +84,18 @@ function DrawArrowButton(button)
     love.graphics.pop()
 end
 
+Credit = {}
+
+function Credit.load()
+    font = love.graphics.newFont(50)
+    love.graphics.setFont(font)
+end
+
+function Credit.draw()
+    love.graphics.print("Alexandre Franquet                     Lylian Hay                         Matthias Gasté", 20, 940)
+    love.graphics.print("Aubane Nourry                          Alban Peralta                       Julien Renard", 20, 1000)
+end
+
 function Button.load()
     local WW = love.graphics.getWidth()
     local WH = love.graphics.getHeight()
@@ -114,6 +126,9 @@ function Button.load()
     AllButtons[11] = createArrowButton({x = WW / 2 - WW / 6, y = WH / 8 * 4}, {x = WW / 40, y = WW / 40}, PlayerCustomization.incPlayerColor, GameState["PlayerCustomization"], "left")
     AllButtons[12] = createArrowButton({x = WW / 2 + WW / 6, y = WH / 8 * 4}, {x = WW / 40, y = WW / 40}, PlayerCustomization.decrPlayerColor, GameState["PlayerCustomization"], "right")
     AllButtons[13] = createClassicButton({x = WW / 2 - WW / 10, y = WH / 8 * 5}, {x = WW / 5, y = WH / 15}, "Back", GameActions.setGameStateBack, GameState["PlayerCustomization"])
+
+    -- Credit
+    Credit.load()
 end
 
 function Button.draw()
