@@ -19,17 +19,17 @@ end
 
 function SceneSwap.SlidePlayerTop()
     if (value_player ~= 0) then
-        player.y = player.y + 10
-        value_player = value_player - 10
+        player.y = player.y + 40
+        value_player = value_player - 40
     end
 end
 
 function SceneSwap.SlideTop()
     if (value_top_down ~= 0) then
         for i = 1, #PL do
-            plateforms[i].hitbox.y = plateforms[i].hitbox.y + 10
+            plateforms[i].hitbox.y = plateforms[i].hitbox.y + 45
         end
-        value_top_down = value_top_down - 10
+        value_top_down = value_top_down - 45
     end
 end
 
@@ -47,17 +47,17 @@ end
 
 function SceneSwap.SlidePlayerDown()
     if (value_player ~= 0) then
-        player.y = player.y - 10
-        value_player = value_player - 10
+        player.y = player.y - 40
+        value_player = value_player - 40
     end
 end
 
 function SceneSwap.SlideDown()
     if (value_top_down ~= 0) then
         for i = 1, #PL do
-            plateforms[i].hitbox.y = plateforms[i].hitbox.y - 10
+            plateforms[i].hitbox.y = plateforms[i].hitbox.y - 45
         end
-        value_top_down = value_top_down - 10
+        value_top_down = value_top_down - 45
     end
 end
 
