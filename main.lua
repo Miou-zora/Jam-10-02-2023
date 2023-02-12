@@ -11,6 +11,7 @@ require "src/Sound"
 require "src/Cursor"
 require "src/Timer"
 require "src/Feather"
+require "src/StarEnd"
 require "src/Item"
 
 function love.load()
@@ -57,11 +58,14 @@ function love.draw()
         GameActions.drawTitle()
         love.mouse.setVisible(true)
         GameActions.drawTitle()
-        if ActualGameState == GameState["Menu"] then
+        if ActualGameState == GameState["Menu"] or ActualGameState == GameState["End"] then
             Credit.draw()
         end
         if ActualGameState == GameState["PlayerCustomization"] then
             PlayerCustomization.draw()
+        end
+        if (ActualGameState == GameState["End"]) then
+            love.graphics.print("THANKS FOR PLAYING", 420, 500, 0, 2, 2)
         end
     end
 end

@@ -55,6 +55,11 @@ function GameActions.setGameStateOption()
     ActualGameState = GameState["Option"]
 end
 
+function GameActions.setGameStateEnd()
+    LastGameState = ActualGameState
+    ActualGameState = GameState["End"]
+end
+
 function GameActions.setGameStateMenu()
     LastGameState = ActualGameState
     ActualGameState = GameState["Menu"]
