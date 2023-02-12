@@ -7,11 +7,13 @@ require "src/PlayerCustomization"
 require "src/GameActions"
 require "src/Bat"
 require "src/Particules"
+require "src/Cursor"
 
 function love.load()
     love.window.setMode(1920, 1080)
     love.window.setTitle("Jam Super Héros")
 
+    Cursor.load()
     SceneSwap.LoadSceneSwap()
     GameActions.load()
     PlayerCustomization.load()
