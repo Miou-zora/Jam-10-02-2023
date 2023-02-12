@@ -1,5 +1,10 @@
 Plateform = {}
 
+plateformType = {
+    plateform = 0,
+    spike = 1
+}
+
 local function createRectangle(x, y, w, h)
     return {x = x, y = y, w = w, h = h}
 end
