@@ -42,7 +42,5 @@ function MovePlayer.SetDirection(x, y, btn)
             leftClickActive = true
             player.v = { x = math.cos(stick.angle), y = math.sin(stick.angle) }
         end
-    else
-        leftClickActive = false
     end
 end
