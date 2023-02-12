@@ -8,6 +8,10 @@ require "src/GameActions"
 require "src/Bat"
 require "src/Particules"
 require "src/Cursor"
+require "src/Timer"
+
+SECOND = 0
+MINUTE = 0
 
 function love.load()
     love.window.setMode(1920, 1080)
@@ -30,6 +34,7 @@ function love.update(dt)
     MovePlayer.Update(dt)
     Bat.Update(dt)
     Particle.Update(dt)
+    Timer.update(dt)
 end
 
 function love.draw()
@@ -41,6 +46,7 @@ function love.draw()
         Plateform.draw(plateforms)
         SceneSwap.DisplaySceneSwap()
         Particle.draw()
+        Timer.draw()
     else
         Bat.draw()
         GameActions.drawTitle()
