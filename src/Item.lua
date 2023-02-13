@@ -19,6 +19,13 @@ function Item.Load()
     end
 end
 
+function Item.MoveAll(dx, dy)
+    for i = 1, #Item.AllItems do
+        Item.AllItems[i].pos.x = Item.AllItems[i].pos.x + dx
+        Item.AllItems[i].pos.y = Item.AllItems[i].pos.y + dy
+    end
+end
+
 function Item.CollideWith(hitbox1, hitbox2)
     if Item.IsIn(hitbox1.pos, hitbox2) or
     Item.IsIn({x = hitbox1.pos.x, y = hitbox1.pos.y + hitbox1.size.y}, hitbox2) or
