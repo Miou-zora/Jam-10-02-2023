@@ -1,6 +1,7 @@
 require "src/IsTouch"
 require "src/PlayerCustomization"
 require "src/Sound"
+require "src/Particules"
 
 Rotate = 0
 
@@ -34,6 +35,18 @@ end
 
 function MovePlayer.Move(dt)
     if leftClickActive == true then
+        for i = 1, 50 do
+            local particle = {
+                x = love.math.random(player.x - 20, player.x + 20),
+                y = love.math.random(player.y - 20, player.y + 20),
+                xv = love.math.random(-100, 100),
+                yv = love.math.random(-100, 100),
+                ttl = love.math.random(0.5, 1.5),
+                color = {1, 0.5, 0}
+            }
+            table.insert(particles, particle)
+        end
+        table.insert(particles, particle)
         player.x = player.x + MovePlayer.speed * player.v.x * dt
         player.y = player.y + MovePlayer.speed * player.v.y * dt
         player.state = stateType.jump
