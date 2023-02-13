@@ -94,11 +94,11 @@ local function PrintBlackLore()
 end
 
 local function PrintGreenLore()
-    love.graphics.print("Zelena (Gout kiwano):\nEst timide", 500, 800)
+    love.graphics.print("Zelena (Gout kiwano):\nAime la chocolatine", 500, 800)
 end
 
 local function PrintGrayLore()
-    love.graphics.print("Mhlophe (Gout ramboutan):\nFan de Starwars", 500, 800)
+    love.graphics.print("Mhlophe (Gout ramboutan):\nFan de pain au chocolat", 500, 800)
 end
 
 function PlayerCustomization.draw()
