@@ -1,5 +1,6 @@
 require "src/IsTouch"
 require "src/PlayerCustomization"
+require "src/Sound"
 
 Rotate = 0
 
@@ -37,6 +38,8 @@ function MovePlayer.Move(dt)
         player.y = player.y + MovePlayer.speed * player.v.y * dt
         player.state = stateType.jump
         if IsTouch() == true then
+            love.audio.stop(Sound.Sounds.Collide)
+            love.audio.play(Sound.Sounds.Collide)
             player.x = player.x - MovePlayer.speed * player.v.x * dt
             player.y = player.y - MovePlayer.speed * player.v.y * dt
             player.state = stateType.ground

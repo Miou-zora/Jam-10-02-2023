@@ -3,10 +3,11 @@ require "src/Button"
 Sound = {}
 
 Sound.Music = {}
-
 Sound.Musics = {InGame = nil, MainMenu = nil}
-
 Sound.LastMusic = nil
+
+Sound.Sound = {}
+Sound.Sounds = {Collide = nil}
 
 function Sound.Music.GetVolume()
     return love.audio.getVolume()
@@ -34,6 +35,9 @@ function Sound.load()
     Sound.Musics = {
         InGame = love.audio.newSource("assets/sounds/InGame.mp3", "stream"),
         MainMenu = love.audio.newSource("assets/sounds/MainMenu.mp3", "stream")
+    }
+    Sound.Sounds = {
+        Collide = love.audio.newSource("assets/sounds/Collide.mp3", "static")
     }
     Sound.Play(Sound.Musics.InGame)
     InitButtons()
