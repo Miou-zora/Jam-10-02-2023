@@ -28,7 +28,8 @@ function GameActions.load()
         "Asexual",
         "Aromantic",
         "Genderfluid",
-        "NonBinary"
+        "NonBinary",
+        "Bi"
     }
     Title = love.graphics.newImage("assets/Title/" ..PossibleTitle[love.math.random(#PossibleTitle)].. ".png")
 end
@@ -56,6 +57,11 @@ end
 function GameActions.setGameStateOption()
     LastGameState = ActualGameState
     ActualGameState = GameState["Option"]
+end
+
+function GameActions.setGameStateEnd()
+    LastGameState = ActualGameState
+    ActualGameState = GameState["End"]
 end
 
 function GameActions.setGameStateMenu()

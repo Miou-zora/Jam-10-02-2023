@@ -1,6 +1,7 @@
 require "src/MovePlayer"
 require "src/PlayerCustomization"
 require "src/DisplayRotation"
+require "src/Item"
 
 SceneSwap = {}
 
@@ -21,6 +22,7 @@ end
 function SceneSwap.SlidePlayerTop()
     if (value_player ~= 0) then
         player.y = player.y + 40
+        Item.MoveAll(0, 40)
         value_player = value_player - 40
     end
 end
@@ -49,6 +51,7 @@ end
 function SceneSwap.SlidePlayerDown()
     if (value_player ~= 0) then
         player.y = player.y - 40
+        Item.MoveAll(0, -40)
         value_player = value_player - 40
     end
 end
