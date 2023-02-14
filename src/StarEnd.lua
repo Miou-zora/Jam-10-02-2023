@@ -3,25 +3,15 @@ require "src/IsTouch"
 require "src/GameActions"
 
 StarEnd = {Type = "starEnd"}
-Item.Types[#Item.Types + 1] = StarEnd
+Item.AddType(StarEnd)
 
 
-function StarEndUpdate(feather, dt)
-    if feather.active == false then
-        if Item.CollideWith(feather.hitbox, {pos = {x = player.x, y = player.y}, size = {x = 70, y = 18}}) then
-            feather.toDisplay = false
-            feather.active = true
+function StarEndUpdate(star, dt)
+    if star.active == false then
+        if Item.CollideWith(star.hitbox, Player.player.hitbox) then
             GameActions.setGameStateEnd()
         end
-    else
-        if leftClickActive == false then
-            feather.active = false
-            feather.toDisplay = true
-        end
-        player.v = { x = math.cos(stick.angle), y = math.sin(stick.angle) }
     end
-end
-function StarEndMouseMoved(feather, x, y, dx, dy, istouch)
 end
 
 function StarEnd.New(pos)
@@ -35,7 +25,7 @@ function StarEnd.New(pos)
     starEnd.toDisplay = true
     starEnd.active = false
     starEnd.type = StarEnd.Type
-    starEnd.mouseMoved = StarEndMouseMoved
+    starEnd.mouseMoved = nil
     return starEnd
 end
 

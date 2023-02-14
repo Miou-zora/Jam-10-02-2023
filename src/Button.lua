@@ -2,7 +2,7 @@ require "src/GameActions"
 require "src/PlayerCustomization"
 
 Button = {}
-borderColor = {0.75, 0.75, 1.0}
+local borderColor = {0.75, 0.75, 1.0}
 
 Button.Font = love.graphics.newFont(love.graphics.getWidth() / 20)
 Button.ButtonType = {Classic = "Classic", Slider = "Slider", Arrow = "Arrow"}

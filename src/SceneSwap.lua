@@ -21,7 +21,7 @@ end
 
 function SceneSwap.SlidePlayerTop()
     if (value_player ~= 0) then
-        player.y = player.y + 40
+        Player.player.pos.y = Player.player.pos.y + 40
         Item.MoveAll(0, 40)
         value_player = value_player - 40
     end
@@ -50,7 +50,7 @@ end
 
 function SceneSwap.SlidePlayerDown()
     if (value_player ~= 0) then
-        player.y = player.y - 40
+        Player.player.pos.y = Player.player.pos.y - 40
         Item.MoveAll(0, -40)
         value_player = value_player - 40
     end
@@ -78,10 +78,10 @@ function SceneSwap.DownLevel(dt)
 end
 
 function SceneSwap.CheckSwapScene()
-    if player.y < 0 then
+    if Player.player.pos.y < 0 then
         status_scene_swap = Slide_level["Up"]
     end
-    if player.y > 1080 then
+    if Player.player.pos.y > 1080 then
         status_scene_swap = Slide_level["Down"]
     end
 end

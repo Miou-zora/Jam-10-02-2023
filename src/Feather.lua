@@ -1,15 +1,12 @@
 require "src/Item"
-require "src/IsTouch"
+require "src/Player"
 
 Feather = {Type = "feather"}
-Item.Types[#Item.Types + 1] = Feather
-
-function FeatherUpdate(feather, dt)
-end
+Item.AddType(Feather)
 
 function FeatherMouseMoved(feather, x, y, dx, dy, istouch)
     if feather.active == false then
-        if Item.CollideWith(feather.hitbox, {pos = {x = player.x, y = player.y}, size = {x = 70, y = 18}}) then
+        if Item.CollideWith(feather.hitbox, Player.player.hitbox) then
             feather.toDisplay = false
             feather.active = true
         end
@@ -29,7 +26,7 @@ function Feather.New(pos)
     feather.hitbox = {pos = pos, size = {x = feather.image:getWidth(), y = feather.image:getHeight()}}
     feather.rotation = 0
     feather.scale = {x = 1.5, y = 1.5}
-    feather.update = FeatherUpdate
+    feather.update = nil
     feather.toDisplay = true
     feather.active = false
     feather.type = Feather.Type

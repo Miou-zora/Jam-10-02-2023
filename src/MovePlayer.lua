@@ -1,6 +1,7 @@
 require "src/IsTouch"
 require "src/PlayerCustomization"
 require "src/Sound"
+require "src/Player"
 require "src/Particules"
 
 Rotate = 0
@@ -9,23 +10,29 @@ MovePlayer = {}
 
 MovePlayer.speed = 400
 
-function MovePlayer.ReSpawn()
-    player.x = 1920 / 2
-    player.y = 1080 - 150
+function MovePlayer.Spawn()
+    Player.player.pos.x = 1920 / 2
+    Player.player.pos.y = 1080 - 150
     leftClickActive = false
 end
 
 function MovePlayer.Load()
-    player = {x = 1920 / 2, y = 1080 - 150, size = 80}
-    stick = {x = player.x, y = player.y - player.size, size = 50, angle = 0}
-    leftClickActive = false
+    Player.player.pos.x = 1920 / 2
+    Player.player.pos.y = 1080 - 150
+    Player.player.size = {x = 80, y = 80}
+    stick = {
+        x = Player.player.pos.x,
+        y = Player.player.pos.y - Player.player.size.y,
+        size = 50,
+        angle = 0
+    }
 end
 
 function MovePlayer.OrientationStick()
     mouseX, mouseY = love.mouse.getPosition()
-    stick.angle = math.atan2(mouseY - player.y, mouseX - player.x)
-    stick.x = player.x + player.size * math.cos(stick.angle)
-    stick.y = player.y + player.size * math.sin(stick.angle)
+    stick.angle = math.atan2(mouseY - Player.player.pos.y, mouseX - Player.player.pos.x)
+    stick.x = Player.player.pos.x + Player.player.size.x * math.cos(stick.angle)
+    stick.y = Player.player.pos.y + Player.player.size.y * math.sin(stick.angle)
 end
 
 function MovePlayer.Update(dt)
@@ -37,8 +44,8 @@ function MovePlayer.Move(dt)
     if leftClickActive == true then
         for i = 1, 50 do
             local particle = {
-                x = love.math.random(player.x - 20, player.x + 20),
-                y = love.math.random(player.y - 20, player.y + 20),
+                x = love.math.random(Player.player.pos.x - 20, Player.player.pos.x + 20),
+                y = love.math.random(Player.player.pos.y - 20, Player.player.pos.y + 20),
                 xv = love.math.random(-100, 100),
                 yv = love.math.random(-100, 100),
                 ttl = love.math.random(0.5, 1.5),
@@ -47,15 +54,15 @@ function MovePlayer.Move(dt)
             table.insert(particles, particle)
         end
         table.insert(particles, particle)
-        player.x = player.x + MovePlayer.speed * player.v.x * dt
-        player.y = player.y + MovePlayer.speed * player.v.y * dt
-        player.state = stateType.jump
+        Player.player.pos.x = Player.player.pos.x + MovePlayer.speed * Player.player.vector.x * dt
+        Player.player.pos.y = Player.player.pos.y + MovePlayer.speed * Player.player.vector.y * dt
+        Player.player.state = Player.STATETYPE.JUMP
         if IsTouch() == true then
             -- love.audio.stop(Sound.Sounds.Collide)
             -- love.audio.play(Sound.Sounds.Collide)
-            player.x = player.x - MovePlayer.speed * player.v.x * dt
-            player.y = player.y - MovePlayer.speed * player.v.y * dt
-            player.state = stateType.ground
+            Player.player.pos.x = Player.player.pos.x - MovePlayer.speed * Player.player.vector.x * dt
+            Player.player.pos.y = Player.player.pos.y - MovePlayer.speed * Player.player.vector.y * dt
+            Player.player.state = Player.STATETYPE.GROUND
             leftClickActive = false
         end
     end
@@ -66,8 +73,8 @@ function MovePlayer.SetDirection(x, y, btn)
     if btn == 2 then
         if not leftClickActive then
             leftClickActive = true
-            Rotate = math.atan2(y - player.y, x - player.x)
-            player.v = { x = math.cos(stick.angle), y = math.sin(stick.angle) }
+            Rotate = math.atan2(y - Player.player.pos.y, x - Player.player.pos.x)
+            Player.player.vector = { x = math.cos(stick.angle), y = math.sin(stick.angle) }
         end
     end
 end

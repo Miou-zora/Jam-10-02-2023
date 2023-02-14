@@ -1,5 +1,5 @@
 require "src/Button"
-require "src/Initiation"
+require "src/Player"
 require "src/Plateform"
 require "src/SceneSwap"
 require "src/MovePlayer"
@@ -53,6 +53,9 @@ function love.draw()
         Particle.draw()
         Timer.draw()
         Item.Draw()
+
+        love.graphics.setColor(1, 1, 1)
+        love.graphics.rectangle("line", Player.player.pos.x, Player.player.pos.y, 70, 18)
     else
         Bat.draw()
         GameActions.drawTitle()

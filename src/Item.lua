@@ -4,6 +4,10 @@ Item = {}
 Item.AllItems = {}
 Item.Types = {}
 
+function Item.AddType(type)
+    Item.Types[#Item.Types + 1] = type
+end
+
 function Item.IsIn(pos, hitbox)
     if (pos.x > hitbox.pos.x and pos.x < hitbox.pos.x + hitbox.size.x and
         pos.y > hitbox.pos.y and pos.y < hitbox.pos.y + hitbox.size.y) then
