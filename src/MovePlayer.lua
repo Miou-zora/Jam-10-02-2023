@@ -4,8 +4,6 @@ require "src/Sound"
 require "src/Player"
 require "src/Particules"
 
-Rotate = 0
-
 MovePlayer = {}
 
 MovePlayer.speed = 400
@@ -19,7 +17,6 @@ end
 function MovePlayer.Load()
     Player.player.pos.x = 1920 / 2
     Player.player.pos.y = 1080 - 150
-    Player.player.size = {x = 80, y = 80}
     stick = {
         x = Player.player.pos.x,
         y = Player.player.pos.y - Player.player.size.y,
@@ -73,8 +70,9 @@ function MovePlayer.SetDirection(x, y, btn)
     if btn == 2 then
         if not leftClickActive then
             leftClickActive = true
-            Rotate = math.atan2(y - Player.player.pos.y, x - Player.player.pos.x)
-            Player.player.vector = { x = math.cos(stick.angle), y = math.sin(stick.angle) }
+            Player.player.rotation = math.atan2(y - Player.player.pos.y, x - Player.player.pos.x)
+            Player.player.vector.x = math.cos(stick.angle)
+            Player.player.vector.y = math.sin(stick.angle)
         end
     end
 end

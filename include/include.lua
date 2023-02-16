@@ -1,2 +1,1 @@
-require "src/initiation"
-require "src/enum"
+debug = true

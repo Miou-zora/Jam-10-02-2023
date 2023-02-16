@@ -31,6 +31,7 @@ function love.load()
     plateforms = Plateform.load(path)
     SceneSwap.LoadSceneSwap(plateforms)
     Item.Load()
+    Player.Load()
 end
 
 function love.update(dt)
@@ -39,6 +40,7 @@ function love.update(dt)
     Bat.Update(dt)
     Particle.Update(dt)
     Timer.Update(dt)
+    Player.Update(dt)
     Item.Update(dt)
 end
 
@@ -49,13 +51,12 @@ function love.draw()
     if ActualGameState == GameState["Game"] then
         love.mouse.setVisible(false)
         Plateform.draw(plateforms)
+        Player.Debug()
         SceneSwap.DisplaySceneSwap()
         Particle.draw()
         Timer.draw()
         Item.Draw()
 
-        love.graphics.setColor(1, 1, 1)
-        love.graphics.rectangle("line", Player.player.pos.x, Player.player.pos.y, 70, 18)
     else
         Bat.draw()
         GameActions.drawTitle()

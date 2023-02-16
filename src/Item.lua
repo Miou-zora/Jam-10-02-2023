@@ -17,6 +17,18 @@ function Item.IsIn(pos, hitbox)
     end
 end
 
+
+function Item.CollideWith(hitbox1, hitbox2)
+    if Item.IsIn(hitbox1.pos, hitbox2) or
+    Item.IsIn({x = hitbox1.pos.x, y = hitbox1.pos.y + hitbox1.size.y}, hitbox2) or
+    Item.IsIn({x = hitbox1.pos.x + hitbox1.size.y, y = hitbox1.pos.y + hitbox1.size.y}, hitbox2) or
+    Item.IsIn({x = hitbox1.pos.x + hitbox1.size.y, y = hitbox1.pos.y}, hitbox2) then
+        return true
+    else
+        return false
+    end
+end
+
 function Item.Load()
     for i = 1, #Item.Types do
         Item.Types[i].Load()
@@ -30,14 +42,39 @@ function Item.MoveAll(dx, dy)
     end
 end
 
-function Item.CollideWith(hitbox1, hitbox2)
-    if Item.IsIn(hitbox1.pos, hitbox2) or
-    Item.IsIn({x = hitbox1.pos.x, y = hitbox1.pos.y + hitbox1.size.y}, hitbox2) or
-    Item.IsIn({x = hitbox1.pos.x + hitbox1.size.y, y = hitbox1.pos.y + hitbox1.size.y}, hitbox2) or
-    Item.IsIn({x = hitbox1.pos.x + hitbox1.size.y, y = hitbox1.pos.y}, hitbox2) then
-        return true
-    else
-        return false
+-- function Item.DrawHitbox(item)
+--     love.graphics.origin()
+--     love.graphics.setColor(1, 0.5, 0.5, 0.5)
+--     love.graphics.rectangle("fill", item.hitbox.pos.x - (item.hitbox.size.x / 2) * item.scale.x,
+--     item.hitbox.pos.y - (item.hitbox.size.y / 2) * item.scale.y,
+--                             item.hitbox.size.x * item.scale.x,
+--                             item.hitbox.size.y * item.scale.y)
+-- end
+
+function Item.DrawHitbox(item)
+    if (item.verticies ~= nil) then
+        love.graphics.origin()
+        if (item.active) then
+            love.graphics.setColor(1, 0.5, 0.5, 0.5)
+        else
+            love.graphics.setColor(0.5, 1, 0.5, 0.5)
+        end
+        love.graphics.translate(item.pos.x, item.pos.y)
+        love.graphics.polygon("fill", item.verticies)
+        for a = 1, #item.verticies do
+            print(a, item.verticies[a])
+        end
+        love.graphics.origin()
+    end
+end
+
+function Item.Debug()
+    for i = 1, #Item.AllItems do
+        -- Item.DrawHitbox(Item.AllItems[i])
+        Item.DrawHitbox(Item.AllItems[i])
+        if (Item.AllItems[i].Debug ~= nil) then
+            Item.AllItems[i].Debug()
+        end
     end
 end
 
@@ -50,6 +87,7 @@ local function DrawOneItem(item)
 end
 
 function Item.Draw()
+    Item.Debug()
     for i = 1, #Item.AllItems do
         if Item.AllItems[i].toDisplay then
             DrawOneItem(Item.AllItems[i])

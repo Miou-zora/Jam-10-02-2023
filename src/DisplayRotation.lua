@@ -6,7 +6,7 @@ function DisplayRotation.Player(playerColor)
     local playerHeight = playerColor:getHeight()
 
     if Player.player.state == Player.STATETYPE.JUMP then
-        love.graphics.draw(playerColor, Player.player.pos.x, Player.player.pos.y, Rotate, 0.4, 0.4, playerWidth / 2, playerHeight / 2)
+        love.graphics.draw(playerColor, Player.player.pos.x, Player.player.pos.y, Player.player.rotation, 0.4, 0.4, playerWidth / 2, playerHeight / 2)
     else
         love.graphics.draw(playerColor, Player.player.pos.x, Player.player.pos.y, 0, 0.4, 0.4, playerWidth / 2, playerHeight / 2)
     end
@@ -29,7 +29,7 @@ function DisplayRotation.Cap(playerHat)
     local hatHeight = playerHat:getHeight()
 
     if Player.player.state == Player.STATETYPE.JUMP then
-        love.graphics.draw(playerHat, Player.player.pos.x + 10, Player.player.pos.y - 35, Rotate, 0.7, 0.7, hatWidth / 2, hatHeight / 2)
+        love.graphics.draw(playerHat, Player.player.pos.x + 10, Player.player.pos.y - 35, Player.player.rotation, 0.7, 0.7, hatWidth / 2, hatHeight / 2)
     else
         love.graphics.draw(playerHat, Player.player.pos.x + 10, Player.player.pos.y - 35, 0, 0.7, 0.7, hatWidth / 2, hatHeight / 2)
     end
@@ -40,7 +40,7 @@ function DisplayRotation.Horns(playerHat)
     local hatHeight = playerHat:getHeight()
 
     if Player.player.state == Player.STATETYPE.JUMP then
-        love.graphics.draw(playerHat, Player.player.pos.x - 10, Player.player.pos.y - 25, Rotate, 0.3, 0.3, hatWidth / 2, hatHeight / 2)
+        love.graphics.draw(playerHat, Player.player.pos.x - 10, Player.player.pos.y - 25, Player.player.rotation, 0.3, 0.3, hatWidth / 2, hatHeight / 2)
     else
         love.graphics.draw(playerHat, Player.player.pos.x - 10, Player.player.pos.y - 25, 0, 0.3, 0.3, hatWidth / 2, hatHeight / 2)
     end
@@ -51,7 +51,7 @@ function DisplayRotation.Propel(playerHat)
     local hatHeight = playerHat:getHeight()
 
     if Player.player.state == Player.STATETYPE.JUMP then
-        love.graphics.draw(playerHat, Player.player.pos.x - 12, Player.player.pos.y - 28, Rotate, 0.7, 0.7, hatWidth / 2, hatHeight / 2)
+        love.graphics.draw(playerHat, Player.player.pos.x - 12, Player.player.pos.y - 28, Player.player.rotation, 0.7, 0.7, hatWidth / 2, hatHeight / 2)
     else
         love.graphics.draw(playerHat, Player.player.pos.x - 12, Player.player.pos.y - 28 , 0, 0.7, 0.7, hatWidth / 2, hatHeight / 2)
     end
@@ -62,7 +62,7 @@ function DisplayRotation.Top(playerHat)
     local hatHeight = playerHat:getHeight()
 
     if Player.player.state == Player.STATETYPE.JUMP then
-        love.graphics.draw(playerHat, Player.player.pos.x - 10, Player.player.pos.y - 45, Rotate, 0.6, 0.6, hatWidth / 2, hatHeight / 2)
+        love.graphics.draw(playerHat, Player.player.pos.x - 10, Player.player.pos.y - 45, Player.player.rotation, 0.6, 0.6, hatWidth / 2, hatHeight / 2)
     else
         love.graphics.draw(playerHat, Player.player.pos.x - 10, Player.player.pos.y - 45, 0, 0.6, 0.6, hatWidth / 2, hatHeight / 2)
     end
